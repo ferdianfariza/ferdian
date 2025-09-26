@@ -3,6 +3,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { Image } from 'astro:assets';
+
 ---
 
 <!doctype html>
@@ -12,15 +14,55 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>Ferdian Fariza</h1>
-			<p>
-				I am undergraduate student of Informatics Engineering with main areas of interest includes socio-technological change, web technology, machine learning and quantitative research.
+		<main class="max-w-3xl mx-auto px-4 py-12">
+			<h1 class="text-3xl font-bold mb-6">Ferdian Fariza</h1>
+			<p>I am focusing on learning Java, Python, and building applications for both web and mobile platforms. Some of my projects include text-based games, order management apps,and small experiments with machine learning. Below are some project i've done.
 			</p>
-			<p>
-				This website is always developed and maintain by me
+			<div class="relative border-l border-gray-700 dark:border-gray-300 pl-6 space-y-10">
+
+			<!-- Project 1 -->
+			<div>
+			<h4 class="text-xl font-semibold">Lelesegar - Web Order System</h4>
+			<p class="mt-2 text-gray-300 dark:text-gray-700">
+				A web-based order management system for catfish (lele) sales built with Laravel and Filament.
+				Provides an intuitive admin panel, order form with pickup scheduling, and automated database
+				handling to streamline daily transactions.
 			</p>
+			</div>
+
+			<!-- Project 2 -->
+			<div>
+			<h4 class="text-xl font-semibold">Artha Manager - Mobile App</h4>
+			<p class="mt-2 text-gray-300 dark:text-gray-700">
+				A personal finance management mobile app developed with Kotlin in Android Studio. Designed to
+				help track income, expenses, and budgets with a simple and modern interface.
+			</p>
+			</div>
+			<!-- Project 3 -->
+			<div>
+			<h4 class="text-xl font-semibold">Gudangin - Goods Stock Manager</h4>
+			<p class="mt-2 text-gray-300 dark:text-gray-700">
+				A stock management system for warehouse operations built with Next.js, Clerk for authentication,
+				and Shadcn UI for modern, customizable components. Provides secure login and efficient inventory
+				tracking.
+			</p>
+			</div>
+
+			<!-- Project 4 -->
+			<div>
+			<h4 class="text-xl font-semibold">Sonarkode - My Next.js Blog Website</h4>
+			<p class="mt-2 text-gray-300 dark:text-gray-700">
+				A personal blog and documentation platform built with Next.js. Focused on simplicity, fast
+				performance, and scalability for publishing technical articles and project notes.
+			</p>
+			</div>
+
+
+			</div>
+
+			<script src="https://cdn.jsdelivr.net/npm/anichart@latest/dist/anichart.min.js"></script>
+
 		</main>
-		<Footer />
+		<!-- <Footer /> -->
 	</body>
 </html>
