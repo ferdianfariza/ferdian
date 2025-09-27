@@ -4,9 +4,9 @@ import Layout from '../layouts/BlogPost.astro';
 ---
 
 <Layout
-	title="About Me"
+	title="About me"
 	description="A little bit about myself"
-	pubDate={new Date('August 08 2025')}
+	pubDate={new Date('September 27 2025')}
 	heroImage={AboutHeroImage}
 >
 	<p>
@@ -21,19 +21,95 @@ import Layout from '../layouts/BlogPost.astro';
 		and small experiments with machine learning.
 	</p>
 
-	<p>
-		I believe learning by doing is the most effective approach. That’s why I spend a lot of time
-		experimenting with different programming languages and frameworks to understand OOP, databases,
-		and application deployment.
+	<p class="mb-6 text-gray-300">
+		I use this stack to balance simplicity, performance, and learning opportunities.  
+		It allows me to build web, mobile, and data-driven projects while practicing modern development workflows.
 	</p>
 
-	<p>
-		Outside of coding, I enjoy exploring new technologies, reading documentation, and finding
-		efficient ways to solve problems.
-	</p>
+<div class="flex flex-col gap-6 mt-4">
 
-	<p>
-		This blog is my space to document my learning journey and share knowledge. Hopefully, it can
-		be useful for others as well.
-	</p>
+  <!-- Frontend / UI -->
+  <div>
+    <p class="text-lg font-semibold text-gray-200 mb-2">Frontend / UI</p>
+    <div class="flex flex-wrap gap-4">
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">Astro</span>
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">TailwindCSS</span>
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">Vanilla CSS</span>
+    </div>
+  </div>
+
+  <!-- Backend / Fullstack -->
+  <div>
+    <p class="text-lg font-semibold text-gray-200 mb-2">Backend / Fullstack</p>
+    <div class="flex flex-wrap gap-4">
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">Laravel</span>
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">PHP</span>
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">MySQL</span>
+    </div>
+  </div>
+
+  <!-- Mobile / Apps -->
+  <div>
+    <p class="text-lg font-semibold text-gray-200 mb-2">Mobile / Apps</p>
+    <div class="flex flex-wrap gap-4">
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">Kotlin</span>
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">Android Studio</span>
+    </div>
+  </div>
+
+  <!-- Scripting / Data -->
+  <div>
+    <p class="text-lg font-semibold text-gray-200 mb-2">Scripting / Data</p>
+    <div class="flex flex-wrap gap-4">
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">Python</span>
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">NumPy</span>
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">Pandas</span>
+    </div>
+  </div>
+
+  <!-- Tools / DevOps -->
+  <div>
+    <p class="text-lg font-semibold text-gray-200 mb-2">Tools / DevOps</p>
+    <div class="flex flex-wrap gap-4">
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">Git</span>
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">VSCode</span>
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">Linux Fedora</span>
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">Vercel</span>
+      <span class="bg-[var(--accent)] text-gray-800 px-4 py-0.5 rounded-full">Niagahoster</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Contact / Call To Action -->
+			<section class="mt-16 text-center">
+			<h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+				Reach Me Out
+			</h2>
+			<p class="text-gray-600 dark:text-gray-400 mb-6">
+				I'm always open to collaboration, new opportunities, or just a good
+				conversation about tech.
+			</p>
+
+			<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+				<!-- Email -->
+				<a
+					href="mailto:ferdianfariza@gmail.com"
+					class="px-5 py-2 rounded-lg border border-[#93d57f] text-[#93d57f] font-medium hover:bg-[#93d57f] hover:text-gray-900 transition"
+				>
+					Email me
+				</a>
+
+				<!-- LinkedIn -->
+				<a
+					href="https://www.linkedin.com/in/ferdian-nur-fariza/"
+					target="_blank"
+					class="px-5 py-2 rounded-lg  text-gray-900 bg-[#93d57f] font-medium hover:bg-[#7ec46e] transition"
+				>
+					LinkedIn
+				</a>
+			</div>
+			</section>
+
+
 </Layout>

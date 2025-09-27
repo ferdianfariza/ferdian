@@ -3,39 +3,85 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
+@import "tailwindcss";
 
-:root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
-		rgba(var(--gray), 33%);
+@layer base {
+	:root {
+		--accent: #93d57f; /* hijau untuk dark theme */
+		--accent-dark: #5ca63c;
+		--black: 26, 26, 26; /* #1a1a1a background */
+		--gray: 150, 150, 150;
+		--gray-light: 60, 60, 60;
+		--gray-dark: 230, 230, 230;
+		--gray-gradient: rgba(var(--black), 90%), rgba(var(--black), 90%);
+		--box-shadow:
+			0 2px 6px rgba(var(--gray-light), 25%), 0 8px 24px rgba(var(--gray-light), 15%), 0 16px 32px rgba(var(--gray-light), 10%);
+	}
+	
+	/* Line each header */
+	.prose h2,
+	.prose h3,
+	.prose h4 {
+		@apply border-b border-gray-700 pb-2 mt-8 mb-2;
+	}
+	.prose p {
+		margin-bottom: 1em;
+	}
+
+	h1 {
+	@apply text-xl leading-tight font-bold text-gray-200 
+				sm:text-2xl lg:text-4xl;
+	}
+	h2 {
+	@apply mt-6 mb-2 text-lg leading-tight font-bold text-gray-200 
+				sm:text-xl lg:text-2xl;
+	}
+	h3 {
+	@apply mb-4 text-base leading-normal font-bold text-gray-200 
+				sm:text-lg lg:text-xl;
+	}
+	h4 {
+	@apply mb-3 text-sm leading-normal font-bold text-gray-200 
+				sm:text-base lg:text-lg;
+	}
+	h5 {
+	@apply mb-2 text-xs leading-tight font-bold text-gray-200 
+				sm:text-sm lg:text-base;
+	}
+
+	p {
+		@apply text-base leading-loose text-gray-300;
+	}
+
+	/* list */
+	ul {
+		@apply text-base leading-loose list-disc list-outside ml-12 text-gray-300;
+	}
+	ol {
+		@apply text-base leading-loose list-decimal list-outside ml-12 text-gray-300;
+	}
+
+	/* nested list */
+	ul ul {
+		@apply list-disc ml-6;
+	}
+	ul ul ul {
+		@apply list-disc ml-6;
+	}
+	ol ol {
+		@apply list-[lower-roman] ml-6;
+	}
+	ol ol ol {
+		@apply list-[lower-roman] ml-6;
+	}
 }
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/SpaceGrotesk-Regular.woff2") format("woff2");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/SpaceGrotesk-Bold.woff2") format("woff2");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
+
 body {
 	font-family: "Atkinson", sans-serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
+	background-color: rgb(var(--black));
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
@@ -49,57 +95,26 @@ main {
 	margin: auto;
 	padding: 3em 1em;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
-}
-h1 {
-	font-size: 3.052em;
-}
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
-}
-strong,
-b {
-	font-weight: 700;
-}
-a {
-	color: var(--accent);
-}
-a:hover {
-	color: var(--accent);
-}
-p {
-	margin-bottom: 1em;
-}
-.prose p {
-	margin-bottom: 2em;
-}
-textarea {
+
+textarea, input {
 	width: 100%;
 	font-size: 16px;
+	color: rgb(var(--gray-dark));
+	background-color: rgb(var(--gray-light));
+	border: 1px solid rgb(var(--gray));
+	border-radius: 6px;
 }
-input {
-	font-size: 16px;
-}
+
 table {
 	width: 100%;
+	color: rgb(var(--gray-dark));
+	border-collapse: collapse;
 }
+table th, table td {
+	border: 1px solid rgb(var(--gray));
+	padding: 0.5em;
+}
+
 img {
 	max-width: 100%;
 	height: auto;
@@ -109,10 +124,15 @@ code {
 	padding: 2px 5px;
 	background-color: rgb(var(--gray-light));
 	border-radius: 2px;
+	color: rgb(var(--gray-dark));
 }
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	margin-bottom: 10px;
+	background-color: rgb(var(--gray-light));
+	color: rgb(var(--gray-dark));
+	font-size: small;
 }
 pre > code {
 	all: unset;
@@ -122,10 +142,11 @@ blockquote {
 	padding: 0 0 0 20px;
 	margin: 0px;
 	font-size: 1.333em;
+	color: rgb(var(--gray-dark));
 }
 hr {
 	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
+	border-top: 1px solid rgb(var(--gray));
 }
 @media (max-width: 720px) {
 	body {
@@ -136,20 +157,27 @@ hr {
 	}
 }
 
-.sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
+
+
+@font-face {
+	font-family: "Atkinson";
+	src: url("/fonts/SpaceGrotesk-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+		font-feature-settings: "case" 1, "kern" 1;
+
 }
+@font-face {
+	font-family: "Atkinson";
+	src: url("/fonts/SpaceGrotesk-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+	font-feature-settings: "case" 1, "ss02","ss03" , "kern" 1;
+}
+
+.font-mono {
+  font-family: "JetBrains", monospace;
+}
+

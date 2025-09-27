@@ -39,14 +39,15 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;
-				text-align: center;
+				text-align: left;
 				line-height: 1;
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
 			}
+
 			.date {
-				margin-bottom: 0.5em;
+				margin-bottom: 0em;
 				color: rgb(var(--gray));
 			}
 			.last-updated-on {
@@ -60,22 +61,24 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<main>
 			<article>
 				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+					<!-- {heroImage && <Image width={1020} height={510} src={heroImage} alt="" />} -->
 				</div>
 				<div class="prose">
 					<div class="title">
-						<div class="date">
+						<h1>{title}</h1>
+						<p class="date font-mono">
+							published:
 							<FormattedDate date={pubDate} />
 							{
 								updatedDate && (
-									<div class="last-updated-on">
+									<p class="last-updated-on">
 										Last updated on <FormattedDate date={updatedDate} />
-									</div>
+									</p>
 								)
 							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
+						</p>
+						<p class="date font-mono">author: Ferdian Fariza <a href="https://x.com/ferdianfarizaa" class="text-[#93d57f]">@ferdianfarizaa</a></p>
+						<hr class="border-gray-700 my-6" />
 					</div>
 					<slot />
 				</div>

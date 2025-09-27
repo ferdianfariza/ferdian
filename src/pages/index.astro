@@ -3,66 +3,128 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import { Image } from 'astro:assets';
-
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main class="max-w-3xl mx-auto px-4 py-12">
-			<h1 class="text-3xl font-bold mb-6">Ferdian Fariza</h1>
-			<p>I am focusing on learning Java, Python, and building applications for both web and mobile platforms. Some of my projects include text-based games, order management apps,and small experiments with machine learning. Below are some project i've done.
+<html lang="en" class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="font-sans leading-relaxed antialiased">
+    <Header />
+    <main class="max-w-3xl mx-auto px-6 py-16">
+      <!-- Hero Section -->
+      <section class="mb-12">
+        <h1 class="text-4xl font-extrabold mb-4 text-gray-900 dark:text-white">
+          Ferdian Fariza
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          I am focusing on learning <span class="font-semibold">Java</span>,
+          <span class="font-semibold">Python</span>, and building applications
+          for both web and mobile platforms. Some of my projects include
+          text-based games, order management apps, and small experiments with
+          machine learning. Below are some projects I've done.
+        </p>
+      </section>
+
+      <!-- Projects Section -->
+      <section>
+        <h2 class="text-2xl font-bold mb-8 text-gray-900 dark:text-white">
+          Projects
+        </h2>
+
+        <div class="relative border-l-2 border-gray-300 dark:border-gray-700 pl-6 space-y-10">
+          <!-- Project 1 -->
+          <div>
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-white">
+              Lelesegar – Web Order System
+            </h4>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">
+              A web-based order management system for catfish (lele) sales built
+              with <span class="font-semibold">Laravel</span> and
+              <span class="font-semibold">Filament</span>. Provides an intuitive
+              admin panel, order form with pickup scheduling, and automated
+              database handling to streamline daily transactions.
+            </p>
+          </div>
+
+          <!-- Project 2 -->
+          <div>
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-white">
+              Artha Manager – Mobile App
+            </h4>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">
+              A personal finance management mobile app developed with
+              <span class="font-semibold">Kotlin</span> in
+              <span class="font-semibold">Android Studio</span>. Designed to
+              help track income, expenses, and budgets with a simple and modern
+              interface.
+            </p>
+          </div>
+
+          <!-- Project 3 -->
+          <div>
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-white">
+              Gudangin – Goods Stock Manager
+            </h4>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">
+              A stock management system for warehouse operations built with
+              <span class="font-semibold">Next.js</span>,
+              <span class="font-semibold">Clerk</span> for authentication, and
+              <span class="font-semibold">Shadcn UI</span> for modern,
+              customizable components. Provides secure login and efficient
+              inventory tracking.
+            </p>
+          </div>
+
+          <!-- Project 4 -->
+          <div>
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-white">
+              Sonarkode – My Next.js Blog Website
+            </h4>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">
+              A personal blog and documentation platform built with
+              <span class="font-semibold">Next.js</span>. Focused on simplicity,
+              fast performance, and scalability for publishing technical
+              articles and project notes.
+            </p>
+          </div>
+        </div>
+
+
+		  <!-- Contact / Call To Action -->
+			<section class="mt-16 text-center">
+			<h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+				Reach Me Out
+			</h2>
+			<p class="text-gray-600 dark:text-gray-400 mb-6">
+				I'm always open to collaboration, new opportunities, or just a good
+				conversation about tech.
 			</p>
-			<div class="relative border-l border-gray-700 dark:border-gray-300 pl-6 space-y-10">
 
-			<!-- Project 1 -->
-			<div>
-			<h4 class="text-xl font-semibold">Lelesegar - Web Order System</h4>
-			<p class="mt-2 text-gray-300 dark:text-gray-700">
-				A web-based order management system for catfish (lele) sales built with Laravel and Filament.
-				Provides an intuitive admin panel, order form with pickup scheduling, and automated database
-				handling to streamline daily transactions.
-			</p>
+			<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+				<!-- Email -->
+				<a
+					href="mailto:ferdianfariza@gmail.com"
+					class="px-5 py-2 rounded-lg border border-[#93d57f] text-[#93d57f] font-medium hover:bg-[#93d57f] hover:text-gray-900 transition"
+				>
+					Email me
+				</a>
+
+				<!-- LinkedIn -->
+				<a
+					href="https://www.linkedin.com/in/ferdian-nur-fariza/"
+					target="_blank"
+					class="px-5 py-2 rounded-lg  text-gray-900 bg-[#93d57f] font-medium hover:bg-[#7ec46e] transition"
+				>
+					LinkedIn
+				</a>
 			</div>
+			</section>
 
-			<!-- Project 2 -->
-			<div>
-			<h4 class="text-xl font-semibold">Artha Manager - Mobile App</h4>
-			<p class="mt-2 text-gray-300 dark:text-gray-700">
-				A personal finance management mobile app developed with Kotlin in Android Studio. Designed to
-				help track income, expenses, and budgets with a simple and modern interface.
-			</p>
-			</div>
-			<!-- Project 3 -->
-			<div>
-			<h4 class="text-xl font-semibold">Gudangin - Goods Stock Manager</h4>
-			<p class="mt-2 text-gray-300 dark:text-gray-700">
-				A stock management system for warehouse operations built with Next.js, Clerk for authentication,
-				and Shadcn UI for modern, customizable components. Provides secure login and efficient inventory
-				tracking.
-			</p>
-			</div>
+      </section>
+    </main>
 
-			<!-- Project 4 -->
-			<div>
-			<h4 class="text-xl font-semibold">Sonarkode - My Next.js Blog Website</h4>
-			<p class="mt-2 text-gray-300 dark:text-gray-700">
-				A personal blog and documentation platform built with Next.js. Focused on simplicity, fast
-				performance, and scalability for publishing technical articles and project notes.
-			</p>
-			</div>
-
-
-			</div>
-
-			<script src="https://cdn.jsdelivr.net/npm/anichart@latest/dist/anichart.min.js"></script>
-
-		</main>
-		<!-- <Footer /> -->
-	</body>
+    <!-- <Footer /> -->
+  </body>
 </html>

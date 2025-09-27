@@ -6,7 +6,6 @@ heroImage: '../../assets/blog-placeholder-3.jpg'
 ---
 Hello, everyone! In this post, we're going to dive into the world of machine learning with **Scikit-learn**, one of the most popular and powerful libraries for data science in Python. We'll walk through how to set up a project in **Visual Studio Code (VS Code)** and build a simple machine learning model.
 
----
 
 ### Why Use Scikit-learn and VS Code?
 
@@ -16,7 +15,7 @@ Before we get our hands dirty, let's talk about why this combination is so effec
 
 **Visual Studio Code**, on the other hand, is a versatile code editor. Its **Jupyter Notebook** integration is a game-changer for data science projects. Using a notebook file (`.ipynb`) allows you to write and run code in cells, display the output (including plots and tables) right below the code, and add markdown text to explain your process. This makes your work reproducible and easy to share.
 
----
+
 
 ### Step 1: Setting Up Your Environment
 
@@ -30,7 +29,7 @@ First, make sure you have Python and VS Code installed.
     ```
     The `jupyter` package is needed for the notebook functionality.
 
----
+
 
 ### Step 2: Creating Your Notebook
 
@@ -39,7 +38,7 @@ Now, let's create our project file.
 1.  Create a new file in VS Code and save it with a `.ipynb` extension, for example, `first_model.ipynb`.
 2.  VS Code will automatically recognize it as a Jupyter Notebook. You'll see a series of cells where you can write code or markdown.
 
----
+
 
 ### Step 3: Building a Simple Model
 
@@ -104,7 +103,6 @@ We'll use a classic dataset included with Scikit-learn: the **Iris dataset**. It
     print(f"The accuracy of our model is: {accuracy:.2f}")
     ```
 
----
 
 ### The Final Verdict: Is It Worth It?
 

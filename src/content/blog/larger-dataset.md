@@ -1,7 +1,7 @@
 ---
 title: 'Working with Larger-Than-Memory Datasets: Chunking & Memory Management'
 description: 'Fundamental strategies and practical tips for handling large datasets efficiently'
-pubDate: 'Jul 15 2022'
+pubDate: 'Jul 15 2024'
 heroImage: '../../assets/blog-placeholder-4.jpg'
 ---
 
@@ -22,7 +22,6 @@ Think of it like eating a large pizza. You don't try to fit the whole pizza in y
 4.  **Store Results:** For each chunk, save the result to a file or a database. *Do not accumulate results in memory* across chunks, as this will defeat the purpose.
 5.  **Combine (Optional):** If needed, combine the saved results at the end into a final output file. Often, you can avoid having the final combined dataset in memory as well.
 
----
 
 ## Practical Implementation with Pandas
 

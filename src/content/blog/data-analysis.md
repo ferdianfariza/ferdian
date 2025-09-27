@@ -7,17 +7,14 @@ heroImage: '../../assets/blog-placeholder-2.jpg'
 Hello, everyone! In this post, we’re going to explore the fundamentals of **data analysis with Python**.  
 We’ll use three of the most essential libraries in the data science ecosystem: **Pandas**, **NumPy**, and **Matplotlib**. By the end, you’ll be able to load, manipulate, and visualize datasets directly in a Jupyter Notebook inside Visual Studio Code.  
 
----
 
-## Why Pandas, NumPy, and Matplotlib?  
+## Why Pandas, NumPy, and Matplotlib? 
 
 - **NumPy**: Provides fast array operations and numerical computing.  
 - **Pandas**: Built on top of NumPy, designed for working with tabular data (rows and columns).  
 - **Matplotlib**: A powerful plotting library to visualize data with charts and graphs.  
 
 Together, these three form the backbone of most Python data science projects.  
-
----
 
 
 ## Step 1: Setting Up the Environment  
