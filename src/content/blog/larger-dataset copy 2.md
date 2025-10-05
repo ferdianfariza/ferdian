@@ -1,6 +1,6 @@
 ---
-title: 'Working with Chunking & Memory Management'
-description: 'A web-based order management system for python'
+title: 'Working with Larger-Than Memory Management'
+description: 'A web-based order management system'
 pubDate: 'Jul 15 2024'
 heroImage: '../../assets/blog-placeholder-4.jpg'
 ---

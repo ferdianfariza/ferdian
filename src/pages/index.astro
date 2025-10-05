@@ -1,8 +1,25 @@
 ---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+// Components
 import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Footer from '../components/Footer.astro';
+
+// Constants
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+// Define a constant for the post type text to improve reusability
+const POST_TYPE = 'Study Case';
+
+// Fetch and sort all blog posts by publication date
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// Image
+import HeroFoto from '../assets/ascii-art.png'
 ---
 
 <!doctype html>
@@ -12,119 +29,102 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
   </head>
   <body class="font-sans leading-relaxed antialiased">
     <Header />
-    <main class="max-w-3xl mx-auto px-6 py-16">
-      <!-- Hero Section -->
-      <section class="mb-12">
-        <h1 class="text-4xl font-extrabold mb-4 text-gray-900 dark:text-white">
-          Ferdian Fariza
-        </h1>
-        <p class="text-lg text-gray-600 dark:text-gray-400">
-          I am focusing on learning <span class="font-semibold">Java</span>,
-          <span class="font-semibold">Python</span>, and building applications
-          for both web and mobile platforms. Some of my projects include
-          text-based games, order management apps, and small experiments with
-          machine learning. Below are some projects I've done.
-        </p>
-      </section>
+    <main>
 
-      <!-- Projects Section -->
-      <section>
-        <h2 class="text-2xl font-bold mb-8 text-gray-900 dark:text-white">
-          Projects
-        </h2>
-
-        <div class="relative border-l-2 border-gray-300 dark:border-gray-700 pl-6 space-y-10">
-          <!-- Project 1 -->
+      <section class="grid grid-cols-1 md:grid-cols-3 items-center my-27">
+        <!-- Text block (span 2 grid) -->
+        <div class="md:col-span-2 h-auto justify-between">
+          <h1 class="text-8xl tracking-tight font-extrabold font-mono my-auto text-black leading-24">
+            Ferdian N. Fariza
+          </h1>
           <div>
-            <h4 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Lelesegar – Web Order System
-            </h4>
-            <p class="mt-2 text-gray-600 dark:text-gray-400">
-              A web-based order management system for catfish (lele) sales built
-              with <span class="font-semibold">Laravel</span> and
-              <span class="font-semibold">Filament</span>. Provides an intuitive
-              admin panel, order form with pickup scheduling, and automated
-              database handling to streamline daily transactions.
+            <p class="text-base text-black font-semibold">
+              Data engineering using Python, and building applications.
             </p>
-          </div>
-
-          <!-- Project 2 -->
-          <div>
-            <h4 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Artha Manager – Mobile App
-            </h4>
-            <p class="mt-2 text-gray-600 dark:text-gray-400">
-              A personal finance management mobile app developed with
-              <span class="font-semibold">Kotlin</span> in
-              <span class="font-semibold">Android Studio</span>. Designed to
-              help track income, expenses, and budgets with a simple and modern
-              interface.
-            </p>
-          </div>
-
-          <!-- Project 3 -->
-          <div>
-            <h4 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Gudangin – Goods Stock Manager
-            </h4>
-            <p class="mt-2 text-gray-600 dark:text-gray-400">
-              A stock management system for warehouse operations built with
-              <span class="font-semibold">Next.js</span>,
-              <span class="font-semibold">Clerk</span> for authentication, and
-              <span class="font-semibold">Shadcn UI</span> for modern,
-              customizable components. Provides secure login and efficient
-              inventory tracking.
-            </p>
-          </div>
-
-          <!-- Project 4 -->
-          <div>
-            <h4 class="text-xl font-semibold text-gray-900 dark:text-white">
-              Sonarkode – My Next.js Blog Website
-            </h4>
-            <p class="mt-2 text-gray-600 dark:text-gray-400">
-              A personal blog and documentation platform built with
-              <span class="font-semibold">Next.js</span>. Focused on simplicity,
-              fast performance, and scalability for publishing technical
-              articles and project notes.
+            <p class="text-sm text-zinc-500">
+              Central Java, Indonesia
             </p>
           </div>
         </div>
 
+        <!-- Image (1 grid column) -->
+        <div class="md:col-span-1 relative w-auto overflow-hidden">
+          <!-- Gambar -->
+          <Image
+            width={720}
+            height={550}
+            src={HeroFoto}
+            alt="Ferdian"
+            class="w-full h-82 object-cover scale-115 translate-x-20"
+          />
 
-		  <!-- Contact / Call To Action -->
-			<section class="mt-16 text-center">
-			<h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-				Reach Me Out
-			</h2>
-			<p class="text-gray-600 dark:text-gray-400 mb-6">
-				I'm always open to collaboration, new opportunities, or just a good
-				conversation about tech.
-			</p>
+          <!-- Tombol overlay -->
+          <div class="absolute top-60 left-4 flex flex-col gap-2">
+            <a href="/resume" class="bg-[#2354FF] tracking-widest w-max px-3 py-1 text-2xl font-bold text-whitee inline-block hover:bg-gray-200 transition">
+              RESUME
+            </a>
+          </div>
 
-			<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-				<!-- Email -->
-				<a
-					href="mailto:ferdianfariza@gmail.com"
-					class="px-5 py-2 rounded-lg border border-[#93d57f] text-[#93d57f] font-medium hover:bg-[#93d57f] hover:text-gray-900 transition"
-				>
-					Email me
-				</a>
+        </div>
 
-				<!-- LinkedIn -->
-				<a
-					href="https://www.linkedin.com/in/ferdian-nur-fariza/"
-					target="_blank"
-					class="px-5 py-2 rounded-lg  text-gray-900 bg-[#93d57f] font-medium hover:bg-[#7ec46e] transition"
-				>
-					LinkedIn
-				</a>
-			</div>
-			</section>
 
       </section>
-    </main>
 
-    <!-- <Footer /> -->
+      <section class="grid grid-cols-1 md:grid-cols-3 items-end my-10">
+        <p class="text-2xl col-span-1 col-start-3 col-end-4 text-right font-bold text-black">What I’ve Worked On</p>
+        <p class="text-base col-span-1 col-start-3 col-end-4 text-right text-zinc-600 font-medium leading-normal">Most of my experience comes from collaborating with clients on real-world projects.</p>
+      </section>
+
+
+      <section>
+        <ul class="grid grid-cols-1 md:grid-cols-3 list-none p-0 m-0">
+          {
+            posts.map((post) => (
+              <li class="relative w-full overflow-hidden group">
+                <a href={`/blog/${post.id}/`} class="block w-full h-82">
+                  {/* Post Image */}
+                  {post.data.heroImage && (
+                    <Image
+                      width={720}
+                      height={550}
+                      src={post.data.heroImage}
+                      alt={post.data.title}
+                      class="w-full h-full object-cover transform transition-transform duration-200 group-hover:scale-105"
+                    />
+                  )}
+                  {/* Overlay */}
+                  <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-4">
+                    <h4 class="m-0 text-xl font-bold font-mono leading-0 text-white">
+                      {post.data.title.split(' ').map((word) => (
+                        <span class="bg-black px-2 pt-0.5 pb-1 leading-tight inline-block group-hover:bg-[#2AC742] shadow-xl">
+                          {word}
+                        </span>
+                      ))}
+                    </h4>
+                    <p class="m-0 text-sm text-neutral-900 bg-white/50 backdrop-blur-xs px-2 py-1 leading-tight inline-block mt-2">
+                      {post.data.description}
+                    </p>
+                  </div>
+                </a>
+              </li>
+
+            ))
+          }
+        </ul>
+      </section>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 my-10">
+
+        <p class="md:col-span-1 text-base font-medium leading-normal">
+          Working with a variety of clients has sharpen me to solve problems effectively and communicate solutions clearly.
+        </p>
+
+      </div>
+
+    </main>
   </body>
+  <footer>
+    <Footer/>
+  </footer>
 </html>

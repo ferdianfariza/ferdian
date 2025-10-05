@@ -5,10 +5,12 @@ import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { Image } from 'astro:assets';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
 ---
 
 <!doctype html>
@@ -18,36 +20,45 @@ const posts = (await getCollection('blog')).sort(
   </head>
   <body class="bg-neutral-900 text-neutral-200">
     <Header />
-    <main class="max-w-3xl mx-auto px-4">
-      <section>
-        <ul class="flex flex-col gap-8 list-none p-0 m-0">
-          {
-            posts.map((post) => (
-              <li class="w-full">
-						<a 
-							href={`/blog/${post.id}/`} 
-							class="block group transform transition-transform duration-200 hover:translate-x-1"
-						>
-							<p class="m-0 text-xs text-neutral-500 group-hover:text-[#93d57f]">
-							<FormattedDate date={post.data.pubDate} />
-							</p>
-							<h4 class="m-0 text-lg font-semibold tracking-wide leading-snug text-neutral-100 group-hover:text-[#93d57f]">
-							{post.data.title}
-							</h4>
+    <main class="max-w-7xl mx-auto px-4">
+  <section>
+    <ul class="grid grid-cols-1 md:grid-cols-3 gap-6 list-none p-0 m-0">
+      {
+        posts.map((post) => (
+          <li class="relative w-full overflow-hidden rounded-md group">
+            <a href={`/blog/${post.id}/`} class="block w-full h-full">
+              {post.data.heroImage && (
+                <Image 
+                  width={720} 
+                  height={480} 
+                  src={post.data.heroImage} 
+                  alt={post.data.title} 
+                  class="w-full h-60 object-cover"
+                />
+              )}
 
+              <!-- Overlay text -->
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-							<p class="m-0 text-sm text-neutral-400">
-								{post.data.description}
-							</p>
-						</a>
-					</li>
+              <div class="absolute bottom-0 left-0 right-0 p-4">
+                <span class="inline-block text-xs bg-neutral-800 text-neutral-200 px-2 py-1 mb-2 rounded">
+                  Study Case
+                </span>
+                <h4 class="m-0 text-lg font-semibold leading-snug text-white group-hover:text-[#93d57f]">
+                  {post.data.title}
+                </h4>
+                <p class="m-0 text-sm text-neutral-200">
+                  {post.data.description}
+                </p>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</main>
 
-            ))
-          }
-        </ul>
-        
-      </section>
-    </main>
     <!-- <Footer /> -->
   </body>
 </html>

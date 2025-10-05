@@ -5,13 +5,37 @@
  */
 @import "tailwindcss";
 
+/* IBM Plex Sans */ 
+
+/* @font-face {
+	font-family: "IBMPlex";
+	src: url("/fonts/IBMPlexSans-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+
+}
+@font-face {
+	font-family: "IBMPlex";
+	src: url("/fonts/IBMPlexMono-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal; 
+	font-display: swap;
+} */
+
+@theme {  
+	--font-sans: "IBM Plex Sans", sans-serif; 
+	--font-mono: "IBM Plex Mono", sans-serif; 
+	--font-serif: "Lora", serif;
+}
+
 @layer base {
 	:root {
 		--accent: #93d57f; /* hijau untuk dark theme */
 		--accent-dark: #5ca63c;
-		--black: 26, 26, 26; /* #1a1a1a background */
+		--black: 9, 9, 11; /* #1a1a1a background */
 		--gray: 150, 150, 150;
-		--gray-light: 60, 60, 60;
+		--gray-light: 256, 256, 256;
 		--gray-dark: 230, 230, 230;
 		--gray-gradient: rgba(var(--black), 90%), rgba(var(--black), 90%);
 		--box-shadow:
@@ -22,7 +46,7 @@
 	.prose h2,
 	.prose h3,
 	.prose h4 {
-		@apply border-b border-gray-700 pb-2 mt-8 mb-2;
+		@apply border-b border-[#93d57f]/15 pb-2 mt-8 mb-2;
 	}
 	.prose p {
 		margin-bottom: 1em;
@@ -33,11 +57,11 @@
 				sm:text-2xl lg:text-4xl;
 	}
 	h2 {
-	@apply mt-6 mb-2 text-lg leading-tight font-bold text-gray-200 
+	@apply mt-6 mb-2 text-lg leading-tight font-bold text-[#93d57f]
 				sm:text-xl lg:text-2xl;
 	}
 	h3 {
-	@apply mb-4 text-base leading-normal font-bold text-gray-200 
+	@apply mb-4 text-base leading-normal font-bold text-[#93d57f]
 				sm:text-lg lg:text-xl;
 	}
 	h4 {
@@ -50,7 +74,7 @@
 	}
 
 	p {
-		@apply text-base leading-loose text-gray-300;
+		@apply text-lg leading-loose text-gray-800;
 	}
 
 	/* list */
@@ -77,23 +101,28 @@
 }
 
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: (--font-sans);
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background-color: rgb(var(--black));
+	background-color: rgb(var(--gray-light));
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
+	color: rgb(var(--gray-light));
 	font-size: 20px;
 	line-height: 1.7;
 }
-main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+main{
+	@apply w-auto max-w-[73rem] mx-auto 
+}
+
+header {
+	@apply w-auto max-w-[73rem] mx-auto 
+}
+
+footer {
+	@apply w-auto max-w-[73rem] mx-auto 
 }
 
 textarea, input {
@@ -115,11 +144,6 @@ table th, table td {
 	padding: 0.5em;
 }
 
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-}
 code {
 	padding: 2px 5px;
 	background-color: rgb(var(--gray-light));
@@ -159,25 +183,4 @@ hr {
 
 
 
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/SpaceGrotesk-Regular.woff2") format("woff2");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-		font-feature-settings: "case" 1, "kern" 1;
-
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/SpaceGrotesk-Bold.woff2") format("woff2");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-	font-feature-settings: "case" 1, "ss02","ss03" , "kern" 1;
-}
-
-.font-mono {
-  font-family: "JetBrains", monospace;
-}
 

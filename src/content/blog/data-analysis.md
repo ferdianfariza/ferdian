@@ -1,8 +1,8 @@
 ---
-title: 'A Beginner''s Guide to Data Analysis with Pandas, NumPy, and Matplotlib'
-description: 'Learn how to read, analyze, and visualize a CSV file using Python''s most popular data science libraries in a Jupyter Notebook.'
+title: 'A Beginner''s Guide to Data Analysis with Pandas'
+description: 'A web-based order management system for python'
 pubDate: 'Jun 19 2024'
-heroImage: '../../assets/blog-placeholder-2.jpg'
+heroImage: '../../assets/blog-placeholder-3.jpg'
 ---
 Hello, everyone! In this post, we’re going to explore the fundamentals of **data analysis with Python**.  
 We’ll use three of the most essential libraries in the data science ecosystem: **Pandas**, **NumPy**, and **Matplotlib**. By the end, you’ll be able to load, manipulate, and visualize datasets directly in a Jupyter Notebook inside Visual Studio Code.  
