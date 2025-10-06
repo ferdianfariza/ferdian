@@ -1,5 +1,5 @@
 ---
-title: 'A Beginner''s Guide to Data Analysis with Pandas'
+title: 'sonarkode.blog'
 description: 'A web-based order management system for python'
 pubDate: 'Jun 19 2024'
 heroImage: '../../assets/blog-placeholder-3.jpg'

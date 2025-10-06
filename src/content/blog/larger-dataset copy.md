@@ -1,5 +1,5 @@
 ---
-title: 'Memory emory Management'
+title: 'gudangin.vercel.app'
 description: 'F practical tips for handling large datasets efficiently'
 pubDate: 'Jul 15 2024'
 heroImage: '../../assets/blog-placeholder-4.jpg'

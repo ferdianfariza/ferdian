@@ -1,5 +1,5 @@
 ---
-title: 'Working with Chunking & Memory Management'
+title: 'artha manager'
 description: 'A web-based order management system for python'
 pubDate: 'Jul 15 2024'
 heroImage: '../../assets/blog-placeholder-4.jpg'

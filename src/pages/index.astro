@@ -7,6 +7,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
+import { HiOutlineLocationMarker } from 'react-icons/hi';
+
 // Constants
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
@@ -19,7 +21,7 @@ const posts = (await getCollection('blog')).sort(
 );
 
 // Image
-import HeroFoto from '../assets/ascii-art.png'
+import HeroFoto from '../assets/ascii-art-blue.png'
 ---
 
 <!doctype html>
@@ -31,57 +33,51 @@ import HeroFoto from '../assets/ascii-art.png'
     <Header />
     <main>
 
-      <section class="grid grid-cols-1 md:grid-cols-3 items-center my-27">
+      <section class="grid grid-cols-1 md:grid-cols-3 mt-27 mb-15">
         <!-- Text block (span 2 grid) -->
-        <div class="md:col-span-2 h-auto justify-between">
-          <h1 class="text-8xl tracking-tight font-extrabold font-mono my-auto text-black leading-24">
+        <div class="md:col-span-2 flex flex-col justify-between h-full">
+          <h1 class="text-8xl tracking-tight font-extrabold font-mono text-black leading-24">
             Ferdian N. Fariza
           </h1>
           <div>
-            <p class="text-base text-black font-semibold">
-              Data engineering using Python, and building applications.
+            <p class="text-xl text-black font-semibold">
+              Data scientist. Based in Central Java
             </p>
-            <p class="text-sm text-zinc-500">
-              Central Java, Indonesia
+            <p class="text-base text-zinc-600 font-normal">
+              Formerly at Universitas Dian Nuswantoro PR Team.
             </p>
           </div>
         </div>
+        
 
         <!-- Image (1 grid column) -->
-        <div class="md:col-span-1 relative w-auto overflow-hidden">
+        <div class="md:col-span-1 relative w-auto overflow-hidden rounded-lg">
           <!-- Gambar -->
           <Image
             width={720}
             height={550}
             src={HeroFoto}
             alt="Ferdian"
-            class="w-full h-82 object-cover scale-115 translate-x-20"
+            class="w-full h-82 object-cover scale-135 "
           />
 
-          <!-- Tombol overlay -->
-          <div class="absolute top-60 left-4 flex flex-col gap-2">
-            <a href="/resume" class="bg-[#2354FF] tracking-widest w-max px-3 py-1 text-2xl font-bold text-whitee inline-block hover:bg-gray-200 transition">
-              RESUME
-            </a>
-          </div>
-
         </div>
-
-
       </section>
 
-      <section class="grid grid-cols-1 md:grid-cols-3 items-end my-10">
-        <p class="text-2xl col-span-1 col-start-3 col-end-4 text-right font-bold text-black">What I’ve Worked On</p>
-        <p class="text-base col-span-1 col-start-3 col-end-4 text-right text-zinc-600 font-medium leading-normal">Most of my experience comes from collaborating with clients on real-world projects.</p>
+
+      <section class="grid grid-cols-1 md:grid-cols-3 items-end mb-10">
+        <p class="text-2xl col-span-1 col-start-3 col-end-4 text-left font-bold text-black mb-3">Project Showcase</p>
+        <p class="text-base col-span-1 col-start-3 col-end-4 text-left text-zinc-600 font-medium leading-relaxed">
+I’ve worked with different clients, which taught me how to solve problems better and explain ideas clearly. Here are some of the projects I’ve worked on.        </p>
       </section>
 
 
       <section>
-        <ul class="grid grid-cols-1 md:grid-cols-3 list-none p-0 m-0">
+        <ul class="grid grid-cols-1 md:grid-cols-3 list-none p-0 m-0 gap-0.5">
           {
             posts.map((post) => (
               <li class="relative w-full overflow-hidden group">
-                <a href={`/blog/${post.id}/`} class="block w-full h-82">
+                <a href={`/blog/${post.id}/`} class="block w-full h-75">
                   {/* Post Image */}
                   {post.data.heroImage && (
                     <Image
@@ -89,22 +85,17 @@ import HeroFoto from '../assets/ascii-art.png'
                       height={550}
                       src={post.data.heroImage}
                       alt={post.data.title}
-                      class="w-full h-full object-cover transform transition-transform duration-200 group-hover:scale-105"
+                      class="w-full h-full object-cover transform transition-transform duration-200 rounded-lg group-hover:scale-105 "
                     />
                   )}
                   {/* Overlay */}
-                  <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div class="absolute bottom-0 left-0 right-0 p-4">
-                    <h4 class="m-0 text-xl font-bold font-mono leading-0 text-white">
-                      {post.data.title.split(' ').map((word) => (
-                        <span class="bg-black px-2 pt-0.5 pb-1 leading-tight inline-block group-hover:bg-[#2AC742] shadow-xl">
-                          {word}
-                        </span>
-                      ))}
+                  <div class="absolute bottom-0 left-0 right-0 p-4 mr-30">
+                    <h4 class="m-0 text-xl font-extrabold font-sans leading-tight text-white mb-2 text-shadow-sm">
+                      {post.data.title}
                     </h4>
-                    <p class="m-0 text-sm text-neutral-900 bg-white/50 backdrop-blur-xs px-2 py-1 leading-tight inline-block mt-2">
+                    <h4 class="m-0 text-sm font-semibold font-sans text-white/70 text-shadow-sm">
                       {post.data.description}
-                    </p>
+                    </h4>
                   </div>
                 </a>
               </li>
@@ -113,14 +104,6 @@ import HeroFoto from '../assets/ascii-art.png'
           }
         </ul>
       </section>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 my-10">
-
-        <p class="md:col-span-1 text-base font-medium leading-normal">
-          Working with a variety of clients has sharpen me to solve problems effectively and communicate solutions clearly.
-        </p>
-
-      </div>
 
     </main>
   </body>

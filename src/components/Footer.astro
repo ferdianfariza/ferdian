@@ -1,22 +1,31 @@
 ---
+import { PiMailboxDuotone } from 'react-icons/pi';
+import { PiGithubLogoDuotone } from 'react-icons/pi';
+import { PiDatabaseDuotone } from 'react-icons/pi';
 const today = new Date();
 ---
 
-<footer class="grid text-black place-content-end w-auto h-auto place-items-end pt-20 pb-50">
+<footer class="grid text-black place-content-center sm:place-content-end w-auto h-auto place-items-end pt-50 pb-20 mx-2 md:mx-0">
 	
 
-	<p class="text-base text-blue-500 font-mono">print(ferdian.vision())</p>
-	<h1 class="max-w-xl text-5xl w-auto text-black mb-10 text-right">clean data, clear results.</h1>
-	<div>
-		<a href="https://m.webtoo.ls/@astro" target="_blank">
-			LINKEDIN
-		</a>
-		<a href="https://twitter.com/astrodotbuild" target="_blank">
-			GITHUB
-		</a>
-		<a href="https://github.com/withastro/astro" target="_blank">
-			EMAIL
-		</a>
-	</div>
-	<p class="text-base text-black">&copy; {today.getFullYear()} Ferdian. All rights reserved.</p>
+	<h1 class="max-w-xl text-5xl w-auto font-bold text-black mb-20 font-mono text-right leading-tight tracking-tighter">clean data, <br>clear results.</h1>
+    <div class="flex gap-5 mb-5 mr-3">
+    <a 
+      href="https://github.com/withastro/astro" 
+      target="_blank" 
+      class="text-black hover:text-blue-500 transition-colors duration-100"
+    >
+      <PiMailboxDuotone size={30}/>
+    </a>
+
+    <a 
+      href="https://twitter.com/astrodotbuild" 
+      target="_blank" 
+      class="text-black hover:text-blue-500 transition-colors duration-100"
+    >
+      <PiGithubLogoDuotone size={30}/>
+    </a>
+  </div>
+
+	<p class="text-base text-black mr-3">&copy; {today.getFullYear()} Ferdian. made by code</p>
 </footer>

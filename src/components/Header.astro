@@ -1,6 +1,7 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import { FiArrowUpRight } from 'react-icons/fi';
 ---
 
 <header class="bg-white sticky top-0 z-50 text-sm font-bold">
@@ -10,47 +11,41 @@ import HeaderLink from './HeaderLink.astro';
     aria-label="Main navigation"
   >
 
-    <div class="text-gray-900 w-full h-auto border-b flex justify-between py-2">
-      <div class="flex space-x-6">
+    <div class="text-gray-900 w-full h-auto flex justify-start py-5">
+      <div class="hidden md:flex space-x-6">
         <a 
           href="/" 
-          class="hover:text-[#93d57f] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#93d57f] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
+          class="hover:text-[#2354FF] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#2354FF] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
           aria-label="Contributions - Home"
         >
-          CONTRIBUTIONS
+          FERDIAN.IS-A.DEV
         </a>
         <a 
           href="/" 
-          class="hover:text-[#93d57f] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#93d57f] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
+          class="hover:text-[#2354FF] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#2354FF] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
           aria-label="GitHub - Home"
         >
           GITHUB
         </a>
         <a 
           href="/" 
-          class="hover:text-[#93d57f] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#93d57f] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
-          aria-label="Biography - Home"
-        >
-          BIOGRAPHY
-        </a>
-      </div>
-
-      <div class="flex space-x-6">
-        <a 
-          href="/" 
-          class="hover:text-[#93d57f] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#93d57f] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
+          class="flex h-auto items-center gap-1 hover:text-[#2354FF] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#2354FF] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
           aria-label="Contributions - Home"
         >
           RESUME
         </a>
         <a 
           href="/" 
-          class="hover:text-[#93d57f] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#93d57f] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
+          class="flex h-auto items-center gap-1 hover:text-[#2354FF] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#2354FF] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
           aria-label="GitHub - Home"
         >
-          LET'S CONNECT
+          LET'S CONNECT  <FiArrowUpRight size={15}/>
         </a>
       </div>
+
+     
+        
+
     </div>
 
     

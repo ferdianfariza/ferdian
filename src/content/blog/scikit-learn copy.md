@@ -1,5 +1,5 @@
 ---
-title: 'An First Machine Learning Model'
+title: 'SAK EMKM App'
 description: 'A web-based order management system'
 pubDate: 'Jul 08 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'

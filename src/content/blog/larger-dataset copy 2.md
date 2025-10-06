@@ -1,5 +1,5 @@
 ---
-title: 'Working with Larger-Than Memory Management'
+title: 'lelesegar.com'
 description: 'A web-based order management system'
 pubDate: 'Jul 15 2024'
 heroImage: '../../assets/blog-placeholder-4.jpg'
