@@ -1,0 +1,23 @@
+---
+// props datang dari parent (misalnya frontmatter atau import)
+// Kita definisikan tipenya juga biar jelas
+interface Item {
+  title: string;
+  content: string;
+}
+
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props as Props;
+---
+
+<div class="grid md:grid-cols-2 gap-6 mb-20">
+  {items.map((item) => (
+    <div>
+      <h7 class="text-black font-bold text-lg">{item.title}</h7>
+      <p>{item.content}</p>
+    </div>
+  ))}
+</div>

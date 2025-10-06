@@ -46,10 +46,10 @@
 	.prose h2,
 	.prose h3,
 	.prose h4 {
-		@apply border-b border-[#93d57f]/15 pb-2 mt-8 mb-2;
+		@apply border-b border-[#93d57f]/15 pb-2 mt-12 mb-2;
 	}
 	.prose p {
-		margin-bottom: 1em;
+		margin-bottom: 0.5em;
 	}
 
 	h1 {
@@ -57,11 +57,11 @@
 				sm:text-2xl lg:text-4xl;
 	}
 	h2 {
-	@apply mt-6 mb-2 text-lg leading-tight font-bold text-[#93d57f]
+	@apply mt-6 mb-2 text-lg leading-tight font-bold text-black
 				sm:text-xl lg:text-2xl;
 	}
 	h3 {
-	@apply mb-4 text-base leading-normal font-bold text-[#93d57f]
+	@apply mb-4 text-base leading-normal font-bold text-black
 				sm:text-lg lg:text-xl;
 	}
 	h4 {
@@ -74,7 +74,7 @@
 	}
 
 	p {
-		@apply text-lg leading-loose text-gray-800;
+		@apply text-base leading-loose text-gray-800;
 	}
 
 	/* list */

@@ -9,81 +9,69 @@ import Header from '../components/Header.astro';
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+
+// sementara hardcode → nanti bisa parse dari frontmatter
+const sourceLink = "https://github.com/ferdianfariza/project";
+const liveLink = "https://ferdianfariza.vercel.app";
+const technologies = ["Python"];
+const libraries = ["pandas", "matplotlib"];
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: left;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
 
-			.date {
-				margin-bottom: 0em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+  <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200">
+    <Header />
+    <main class="container mx-auto pt-15">
+		<article class="flex-col md:grid md:grid-cols-3 gap-8">
+	 
+		  <!-- Metadata -->
+		  <div class="md:sticky md:top-30 self-start">
+			 <p class="text-sm text-gray-500 mb-2">
+				<FormattedDate date={pubDate} />
+			 </p>
+			 <h1 class="text-3xl text-black font-bold mb-4">{title}</h1>
+	 
+			 <div class="flex gap-4 mb-6">
+				<a href={sourceLink} class="text-sm text-blue-600 hover:underline font-medium">Source</a>
+				<a href={liveLink} class="text-sm text-blue-600 hover:underline font-medium">Live</a>
+			 </div>
+	 
+			 <div class="font-mono">
+				<p class="text-sm">Technologies: {technologies.join(", ")}</p>
+				<p class="text-sm">Libraries: {libraries.join(", ")}</p>
+			 </div>
+		  </div>
+	 
+		  <!-- Hero Image spans col 2–3 di desktop, tapi full width di mobile -->
+		  <div class="md:col-span-2">
+			 {heroImage && (
+				<Image
+				  width={900}
+				  height={500}
+				  src={heroImage}
+				  alt={title}
+				  class="rounded-lg shadow-lg w-full object-cover"
+				/>
+			 )}
+		  </div>
+	 
+		  <!-- Kosong col 1 di desktop, otomatis hilang di mobile -->
+		  <div class="hidden md:block"></div>
+	 
+		  <!-- Section + Content -->
+		  <div class="md:col-span-2">
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					<!-- {heroImage && <Image width={1020} height={510} src={heroImage} alt="" />} -->
-				</div>
-				<div class="prose">
-					<div class="title">
-						<h1>{title}</h1>
-						<p class="date font-mono">
-							published:
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<p class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</p>
-								)
-							}
-						</p>
-						<p class="date font-mono">author: Ferdian Fariza <a href="https://x.com/ferdianfarizaa" class="text-[#93d57f]">@ferdianfarizaa</a></p>
-						<hr class="border-gray-700 my-6" />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<!-- <Footer /> -->
-	</body>
+			 <section class="prose prose-lg dark:prose-invert mx-auto">
+				<slot />
+			 </section>
+
+		  </div>
+
+		</article>
+	 </main>
+	 
+  </body>
 </html>
