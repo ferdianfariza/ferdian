@@ -1,53 +1,58 @@
 ---
-import { SITE_TITLE } from '../consts';
-import HeaderLink from './HeaderLink.astro';
-import { FiArrowUpRight } from 'react-icons/fi';
+import { SITE_TITLE } from "../consts";
+import HeaderLink from "./HeaderLink.astro";
+import { FiArrowUpRight } from "react-icons/fi";
+
+// Get the current path and build breadcrumb segments
+const pathname = Astro.url.pathname;
+const pathSegments = pathname.split("/").filter((segment) => segment !== "");
+
+// Build breadcrumb items with their paths
+interface BreadcrumbItem {
+  label: string;
+  href: string;
+}
+
+const breadcrumbs: BreadcrumbItem[] = [{ label: "~ / home", href: "/" }];
+
+let currentPath = "";
+for (const segment of pathSegments) {
+  currentPath += `/${segment}`;
+  breadcrumbs.push({
+    label: segment,
+    href: currentPath,
+  });
+}
 ---
 
-<header class="bg-white sticky top-0 z-50 text-sm font-bold">
-  <nav 
+<header
+  class="bg-black/20 backdrop-blur-lg sticky top-0 z-50 text-sm font-bold"
+>
+  <nav
     class="mx-auto px-4 sm:px-0 flex items-center"
     role="navigation"
     aria-label="Main navigation"
   >
-
-    <div class="text-gray-900 w-full h-auto flex justify-start py-5">
-      <div class="hidden md:flex space-x-6">
-        <a 
-          href="/" 
-          class="hover:text-[#2354FF] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#2354FF] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
-          aria-label="Contributions - Home"
-        >
-          FERDIAN.IS-A.DEV
-        </a>
-        <a 
-          href="/" 
-          class="hover:text-[#2354FF] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#2354FF] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
-          aria-label="GitHub - Home"
-        >
-          GITHUB
-        </a>
-        <a 
-          href="/" 
-          class="flex h-auto items-center gap-1 hover:text-[#2354FF] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#2354FF] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
-          aria-label="Contributions - Home"
-        >
-          RESUME
-        </a>
-        <a 
-          href="/" 
-          class="flex h-auto items-center gap-1 hover:text-[#2354FF] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#2354FF] focus:ring-offset-2 focus:ring-offset-[#09090b] rounded-sm"
-          aria-label="GitHub - Home"
-        >
-          LET'S CONNECT  <FiArrowUpRight size={15}/>
-        </a>
-      </div>
-
-     
-        
-
+    <div class="w-full h-auto flex justify-start items-center py-10">
+      {
+        breadcrumbs.map((crumb, index) => (
+          <span class="flex items-center font-mono">
+            {index > 0 && <span class="text-zinc-500 mx-1">/</span>}
+            <a
+              href={crumb.href}
+              aria-label={index === 0 ? "Home" : crumb.label}
+              class={`
+          text-zinc-100
+          hover:text-[#2354FF]
+          transition-colors duration-300
+          ${index === breadcrumbs.length - 1 ? "text-zinc-400" : ""}
+        `}
+            >
+              {crumb.label}
+            </a>
+          </span>
+        ))
+      }
     </div>
-
-    
   </nav>
 </header>
