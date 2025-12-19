@@ -1,0 +1,22 @@
+---
+const username = 'ferdianfariza';
+
+import { GithubGraph as GithubGraphReact } from "./GithubGraph";
+
+interface GithubData {
+  total: {
+    [year: string]: number;
+  };
+  contributions: Array<{
+    date: string;
+    count: number;
+    level: number;
+  }>;
+}
+
+const url = new URL(`/v4/${username}?y=2025`, 'https://github-contributions-api.jogruber.de');
+const response = await fetch(url);
+const data = (await response.json()) as GithubData;
+---
+
+<GithubGraphReact data={data.contributions} client:load />

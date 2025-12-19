@@ -6,6 +6,7 @@ import { Image } from "astro:assets";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import GithubGraph from "@/components/GithubGraph.astro";
 
 // Constants
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
@@ -25,7 +26,7 @@ import { AiOutlinePython } from "react-icons/ai";
 ---
 
 <!doctype html>
-<html lang="en" class="bg-stone-950 scroll-smooth">
+<html lang="en" class="dark bg-stone-950 scroll-smooth">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
@@ -183,12 +184,12 @@ import { AiOutlinePython } from "react-icons/ai";
           </a>
         </div>
       </div>
+      <GithubGraph />
       <div class="flex flex-col gap-6 mt-20">
         <p
           class="inline text-base text-zinc-400 font-mono font-medium text-pretty"
         >
-          I'm Ferdian N. Fariza, a Data Engineer and Application Developer based
-          in Central Java, Indonesia. My work focuses on data engineering,
+          My work focuses on data engineering,
           backend systems, and building applications primarily with <span
             class="inline-flex items-center align-middle"
             ><AiOutlinePython size={18} color="#3776AB" /></span
@@ -197,9 +198,7 @@ import { AiOutlinePython } from "react-icons/ai";
           > React.
         </p>
         <p class="text-base text-zinc-400 font-mono font-medium text-pretty">
-          I work on independent technical projects and experiments, including
-          interfaces for data visualization, particularly around financial data.
-          I also maintain and operate several web-based services, one of which
+          I maintain and operate several web-based services, one of which
           is oxidraw.com
         </p>
         <p class="text-base text-zinc-400 font-mono font-medium text-pretty">
