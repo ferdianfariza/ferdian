@@ -1,33 +1,32 @@
 ---
-import { PiMailboxDuotone } from "react-icons/pi";
-import { PiGithubLogoDuotone } from "react-icons/pi";
-import { PiDatabaseDuotone } from "react-icons/pi";
+import { PiGithubLogo} from "react-icons/pi";
+import { PiLinkedinLogo } from "react-icons/pi";
 const today = new Date();
 ---
 
 <footer
-  class="grid text-black place-content-center sm:place-content-end w-auto h-auto place-items-end pt-50 pb-20 mx-2 md:mx-0"
+  class="grid place-content-start mt-20 mb-52 px-5"
 >
-  <!-- 	
 
-	<h1 class="max-w-xl text-5xl w-auto font-bold text-black mb-20 font-mono text-right leading-tight tracking-tighter">clean data, <br>clear results.</h1>
-    <div class="flex gap-5 mb-5 mr-3">
-    <a 
-      href="https://github.com/withastro/astro" 
-      target="_blank" 
-      class="text-black hover:text-blue-500 transition-colors duration-100"
-    >
-      <PiMailboxDuotone size={30}/>
-    </a>
-
-    <a 
+  <div class="flex-row sm:flex font-mono items-center gap-4">
+    <div class="flex items-center gap-4 mb-10 sm:mb-0">
+      <a 
       href="https://twitter.com/astrodotbuild" 
       target="_blank" 
-      class="text-black hover:text-blue-500 transition-colors duration-100"
-    >
-      <PiGithubLogoDuotone size={30}/>
-    </a>
+      class=" hover:text-blue-500 transition-colors duration-100"
+      >
+      <PiGithubLogo size={20}/>
+      </a>
+      <a 
+      href="https://github.com/withastro/astro" 
+      target="_blank" 
+      class=" hover:text-blue-500 transition-colors duration-100"
+      >
+      <PiLinkedinLogo size={20}/>
+      </a>
+    </div>
+    <div class="w-px h-4 bg-zinc-600 mx-2 hidden sm:block"></div>
+    <p class="text-sm text-zinc-600">&copy; {today.getFullYear()} Ferdian. made by code</p>
   </div>
 
-	<p class="text-base text-black mr-3">&copy; {today.getFullYear()} Ferdian. made by code</p> -->
 </footer>

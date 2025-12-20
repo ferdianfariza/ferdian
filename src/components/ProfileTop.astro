@@ -1,0 +1,91 @@
+---
+import { PiGithubLogo } from "react-icons/pi";
+import { PiLinkedinLogo } from "react-icons/pi";
+import { PiArrowDown } from "react-icons/pi";
+---
+
+<!-- header -->
+      <section class="flex flex-col text-white font-sans sm:font-mono gap-12 mt-5 sm:mt-20">
+        <!-- Text block (span 2 grid) -->
+         <div>
+           <h1
+             class="hidden sm:flex text-3xl font-extrabold font-mono text-de-york-400"
+           >
+             Ferdian N. Fariza
+           </h1>
+           <h1
+             class="flex sm:hidden text-3xl font-extrabold font-mono text-de-york-400"
+           >
+             Ferdian N. <br/>Fariza
+           </h1>
+         </div>
+        <p
+          class="text-base text-zinc-400 font-medium text-pretty mr-10 md:mr-30"
+        >
+          SWE based in Indonesia, Jawa Tengah.
+          <br />
+          Founder @
+          <a
+            href="https://oxidraw.com/landingpage"
+            class="text-de-york-400 font-extrabold underline underline-offset-4 decoration-dotted hover:bg-de-york-800 hover:no-underline"
+            >Oxidraw</a
+          >
+          - app that lets you draw, taking notes, ask ai to do cool stuff. Currently
+          maintaining and managing Oxidraw as a company.
+        </p>
+
+        <!-- Links -->
+        <div
+          class="flex flex-col md:flex-row gap-6 text-md sm:text-sm font-medium"
+        >
+          <a
+            href="https://github.com/ferdianfariza"
+            class="flex gap-2 items-center"
+          >
+            <PiGithubLogo size={18} color="#FFFFFF" />
+            GitHub
+          </a>
+          <div class="w-px my-1 bg-zinc-600 hidden md:inline"></div>
+
+          <a
+            href="https://www.linkedin.com/in/ferdian-nur-fariza/"
+            class="flex gap-2 items-center hover:text-de-york-400"
+          >
+            <PiLinkedinLogo size={18} />
+            Let's Connect
+          </a>
+
+          <div class="w-px my-1 bg-zinc-600 hidden md:inline"></div>
+
+          <a
+            href="https://github.com/ferdianfariza"
+            class="hidden sm:flex gap-2 items-center text-de-york-400 hover:text-de-york-400"
+          >
+            Detailed profile
+            <PiArrowDown size={15} />
+          </a>
+        </div>
+
+        <!-- Company -->
+        <div
+          class="flex flex-col md:flex-row gap-6 text-base font-medium"
+        >
+          <a
+            href="https://github.com/ferdianfariza"
+            class="flex gap-2 items-center"
+          >
+            <PiGithubLogo size={18} color="#FFFFFF" />
+            Oxidraw
+          </a>
+
+          /
+
+          <a
+            href="https://github.com/ferdianfariza"
+            class="flex gap-2 items-center hover:text-de-york-400"
+          >
+            <PiLinkedinLogo size={18} />
+            Sonarkode
+          </a>
+        </div>
+      </section>

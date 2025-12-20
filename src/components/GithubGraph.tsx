@@ -17,7 +17,7 @@ interface GithubGraphProps {
 
 export function GithubGraph({ data }: GithubGraphProps) {
   return (
-    <ContributionGraph data={data} className="mt-20">
+    <ContributionGraph data={data}>
       <ContributionGraphCalendar>
         {({ activity, dayIndex, weekIndex }) => (
           <ContributionGraphBlock
@@ -25,11 +25,11 @@ export function GithubGraph({ data }: GithubGraphProps) {
             dayIndex={dayIndex}
             weekIndex={weekIndex}
                       className={cn(
-            'data-[level="0"]:fill-[#ebedf0] dark:data-[level="0"]:fill-[#161b22]',
-            'data-[level="1"]:fill-[#9be9a8] dark:data-[level="1"]:fill-[#0e4429]',
-            'data-[level="2"]:fill-[#40c463] dark:data-[level="2"]:fill-[#006d32]',
-            'data-[level="3"]:fill-[#30a14e] dark:data-[level="3"]:fill-[#26a641]',
-            'data-[level="4"]:fill-[#216e39] dark:data-[level="4"]:fill-[#39d353]'
+            'data-[level="0"]:fill-[#ebedf0] dark:data-[level="0"]:fill-zinc-800/50',
+            'data-[level="1"]:fill-[#9be9a8] dark:data-[level="1"]:fill-de-york-500/20',
+            'data-[level="2"]:fill-[#40c463] dark:data-[level="2"]:fill-de-york-500/40',
+            'data-[level="3"]:fill-[#30a14e] dark:data-[level="3"]:fill-de-york-500/70',
+            'data-[level="4"]:fill-[#216e39] dark:data-[level="4"]:fill-de-york-400'
           )}
           />
         )}
@@ -37,7 +37,7 @@ export function GithubGraph({ data }: GithubGraphProps) {
       <ContributionGraphFooter>
         <ContributionGraphTotalCount>
           {({ totalCount, year }) => (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 ">
               <span className="text-muted-foreground text-sm">Year {year}:</span>
               <Badge variant="secondary">
                 {totalCount.toLocaleString()} contributions

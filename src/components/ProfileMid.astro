@@ -1,0 +1,21 @@
+---
+import ProjectCard from "./ProjectCard"
+import GithubGraph from "./GithubGraph.astro"
+---
+<div class="flex flex-col gap-4 my-36">
+   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6  font-sans sm:font-mono ">
+      <ProjectCard 
+      link="/projects/oxidraw/" 
+      title="Oxidraw" 
+      description="Infinity canvas and Note taking app built with React and Electron." 
+      image="/projects/oxidraw/preview.png"
+      />
+      <ProjectCard 
+      link="/projects/oxidraw/" 
+      title="Oxidraw" 
+      description="Infinity canvas and Note taking app built with React and Electron." 
+      image="/projects/oxidraw/preview.png"
+      />
+      <GithubGraph/>
+   </div>
+</div>
