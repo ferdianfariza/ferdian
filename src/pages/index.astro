@@ -1,8 +1,6 @@
 ---
 // Components
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import Analytics from '@vercel/analytics/astro';
 import ProfileBelow from "@/components/ProfileBelow.astro";
 import ProfileTop from "@/components/ProfileTop.astro";
@@ -10,26 +8,32 @@ import ProfileMid from "@/components/ProfileMid.astro";
 
 // Constants
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import ProfilePhoto from "@/components/ProfilePhoto.astro";
 ---
 
 <!doctype html>
-<html lang="en" class="dark bg-stone-950 scroll-smooth">
+<html lang="en" class="dark bg-[#1e1e1e] scroll-smooth">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
      <Analytics />
   </head>
-  <body class="font-sans leading-relaxed antialiased mx-5">
-    <Header />
+  <body class="font-sans leading-relaxed antialiased max-w-2xl mx-auto px-6 py-12 text-zinc-100">
     <main transition:animate="fade">
+      <header class="mb-4">
+        <h1 class="text-base font-medium tracking-widest uppercase text-zinc-100">Ferdian N. Fariza</h1>
+      </header>
 
-      <ProfileTop/>
+      <hr class="border-zinc-300 mb-8" />
+
+      <!-- <ProfilePhoto /> -->
+
+      <ProfileTop />
 
       <ProfileMid />
+      
+      <hr class="border-zinc-300 mt-8 mb-4" />
 
       <ProfileBelow />
     </main>
-    <footer >
-      <Footer />
-    </footer>
   </body>
 </html>

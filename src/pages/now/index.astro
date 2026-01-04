@@ -1,0 +1,75 @@
+---
+import { getCollection } from "astro:content";
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+import Header from "../../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import { Image } from "astro:assets";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+import { PiGithubLogo } from "react-icons/pi";
+---
+
+<!doctype html>
+<html lang="en" class="dark bg-stone-950 scroll-smooth">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="font-sans leading-relaxed antialiased text-white">
+    <Header />
+    <main class="mt-10" transition:animate="fade">
+      <!-- Section Header -->
+      <div class="flex justify-between items-center mb-6">
+        <span class="text-zinc-400 text-base font-mono font-semibold"
+          >all projects</span
+        >
+      </div>
+
+      <!-- Project Cards Grid -->
+      <section
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-6"
+      >
+        {
+          posts.map((post) => (
+            <a
+              href={`/projects/${post.id}/`}
+              class="group flex border border-zinc-800 rounded-xl overflow-hidden bg-zinc-900 transition-colors h-48 sm:h-56"
+            >
+              {/* Left Content */}
+              <div class="flex flex-col p-5 sm:p-7 gap-4 flex-1 justify-between">
+                {/* Icon */}
+                <PiGithubLogo size={30} color="#FFFFFF" />
+                {/* Text */}
+                <div class="flex flex-col gap-1">
+                  <p class="text-white font-mono font-bold text-base sm:text-lg truncate">
+                    {post.data.title}
+                  </p>
+                  <p class="text-zinc-500 font-mono text-xs sm:text-sm leading-relaxed line-clamp-2">
+                    {post.data.description}
+                  </p>
+                </div>
+              </div>
+              {/* Right Preview */}
+              <div class="w-24 sm:w-36 md:w-44 lg:w-56 bg-zinc-800 rounded-tl-lg mt-7 group-hover:bg-zinc-700 transition-colors overflow-hidden">
+                {post.data.heroImage && (
+                  <Image
+                    width={720}
+                    height={480}
+                    src={post.data.heroImage}
+                    alt={post.data.title}
+                    class="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+            </a>
+          ))
+        }
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>

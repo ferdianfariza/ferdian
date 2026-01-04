@@ -1,21 +1,28 @@
 ---
-import ProjectCard from "./ProjectCard"
-import GithubGraph from "./GithubGraph.astro"
+const oxidraw = "https://oxidraw.com/landingpage";
+const lelesegar = "https://lelesegar.com/";
+const sonarkode = "https://sonarkode.blog/";
 ---
-<div class="flex flex-col gap-4 my-36">
-   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6  font-sans sm:font-mono ">
-      <ProjectCard 
-      link="/projects/oxidraw/" 
-      title="Oxidraw" 
-      description="Infinity canvas and Note taking app built with React and Electron." 
-      image="/projects/oxidraw/preview.png"
-      />
-      <ProjectCard 
-      link="/projects/oxidraw/" 
-      title="Oxidraw" 
-      description="Infinity canvas and Note taking app built with React and Electron." 
-      image="/projects/oxidraw/preview.png"
-      />
-      <GithubGraph/>
-   </div>
-</div>
+
+<section class="flex flex-col gap-6 text-[0.9rem]">
+  <p class="leading-relaxed">
+    Founder and maintainer at <a href={oxidraw} class="underline underline-offset-4" target="_blank">Oxidraw</a>.
+  </p>
+
+  <p class="leading-relaxed">
+      Former PR Team Intern at Dian Nuswantoro University. Currently building <a href={lelesegar} class="underline underline-offset-4" target="_blank">lelesegar</a> to support local businesses, and writing at <a href={sonarkode} class="underline underline-offset-4" target="_blank">Sonarkode</a> about software development and engineering.
+  </p>
+  <p class="leading-relaxed">
+      Some say you miss 100% of the shots you don’t take and that's true.
+  </p>
+
+  <p class="text-sm leading-relaxed">
+    Keeping my profile photo fresh! Here are some snapshots from recent adventures and work moments.
+  </p>
+
+
+  <p class="leading-relaxed">
+      Cheers!
+  </p>
+
+</section>
