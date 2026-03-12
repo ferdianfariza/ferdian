@@ -9,31 +9,240 @@ import ProfileMid from "@/components/ProfileMid.astro";
 // Constants
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import ProfilePhoto from "@/components/ProfilePhoto.astro";
+import FaceImg from "@/assets/asd.svg";
 ---
 
 <!doctype html>
-<html lang="en" class="dark bg-[#1e1e1e] scroll-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-     <Analytics />
+    <Analytics />
+    <style>
+      @keyframes drift {
+        0%   { transform: translate(0, 0) scale(1); }
+        33%  { transform: translate(40px, -30px) scale(1.08); }
+        66%  { transform: translate(-30px, 20px) scale(0.95); }
+        100% { transform: translate(0, 0) scale(1); }
+      }
+      @keyframes drift2 {
+        0%   { transform: translate(0, 0) scale(1); }
+        33%  { transform: translate(-50px, 40px) scale(1.1); }
+        66%  { transform: translate(30px, -20px) scale(0.92); }
+        100% { transform: translate(0, 0) scale(1); }
+      }
+      @keyframes drift3 {
+        0%   { transform: translate(0, 0) scale(1); }
+        50%  { transform: translate(20px, 50px) scale(1.05); }
+        100% { transform: translate(0, 0) scale(1); }
+      }
+      @keyframes hoverPulse {
+        0%   { transform: scale(1) rotate(0deg); }
+        50%  { transform: scale(1.1) rotate(5deg); }
+        100% { transform: scale(1) rotate(0deg); }
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+      .svg-hover:hover {
+        animation: hoverPulse 0.6s ease-in-out;
+      }
+      .hello-text {
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
+      }
+      .svg-hover:hover ~ .hello-text,
+      .face-container:hover .hello-text {
+        opacity: 1;
+      }
+      .blob1 {
+        position: fixed; z-index: -1; border-radius: 9999px; filter: blur(80px); opacity: 0.35;
+        width: 520px; height: 520px;
+        background: radial-gradient(circle, #86efac, #4ade80);
+        top: -100px; left: -120px;
+        animation: drift 14s ease-in-out infinite;
+      }
+      .blob2 {
+        position: fixed; z-index: -1; border-radius: 9999px; filter: blur(100px); opacity: 0.28;
+        width: 600px; height: 600px;
+        background: radial-gradient(circle, #93c5fd, #818cf8);
+        bottom: -150px; right: -150px;
+        animation: drift2 18s ease-in-out infinite;
+      }
+      .blob3 {
+        position: fixed; z-index: -1; border-radius: 9999px; filter: blur(90px); opacity: 0.22;
+        width: 400px; height: 400px;
+        background: radial-gradient(circle, #fde68a, #fb923c);
+        bottom: 10%; left: 40%;
+        animation: drift3 22s ease-in-out infinite;
+      }
+    </style>
   </head>
-  <body class="font-sans leading-relaxed antialiased max-w-2xl mx-auto px-6 py-12 text-zinc-100">
-    <main transition:animate="fade">
-      <header class="mb-4">
-        <h1 class="text-base font-medium tracking-widest uppercase text-zinc-100">Ferdian N. Fariza</h1>
-      </header>
+  <body class="bg-white font-serif leading-relaxed antialiased min-h-screen flex items-center justify-center px-6 py-12">
+    <div class="blob1"></div>
+    <div class="blob2"></div>
+    <div class="blob3"></div>
+    <main transition:animate="fade" class="w-full max-w-2xl">
+      <div class="flex flex-col items-start">
+        <!-- Face with yellow circle -->
+        <div class="face-container relative mb-8">
+          <div class="absolute inset-0 rounded-full bg-yellow-300 w-20 h-20"></div>
+          <img id="face-trigger" src={FaceImg.src} alt="Ferdian's face" class="relative w-20 h-20 rounded-full z-10 svg-hover cursor-pointer" />
+          <span class="hello-text absolute -top-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-sm font-medium">hello! 👋</span>
+        </div>
 
-      <hr class="border-zinc-300 mb-8" />
+        <!-- Title -->
+        <header class="mb-6">
+          <h1 class="text-2xl font-medium ">Ferdian N. Fariza</h1>
+        </header>
+        
+        <!-- First line -->
+        <hr class="w-full mb-6" />
 
-      <!-- <ProfilePhoto /> -->
+        <!-- Bio content -->
+        <div class="mb-8">
+          <ProfileMid />
+        </div>
 
-      <ProfileTop />
-
-      <ProfileMid />
-      
-      <hr class="border-zinc-300 mt-8 mb-4" />
-
-      <ProfileBelow />
+        <!-- Second line -->
+        <hr class="w-full mb-6" />
+        
+        <!-- Links -->
+        <div>
+          <ProfileBelow />
+        </div>
+      </div>
     </main>
+    <script is:inline>
+      const faceTrigger = document.getElementById('face-trigger');
+      const counterValue = document.getElementById('tap-counter-value');
+      const fallbackStorageKey = 'face-tap-counter-local';
+
+      let currentCount = 0;
+      let counterEnabled = true;
+      let writeQueue = Promise.resolve();
+
+      function renderCount(nextCount) {
+        if (!counterValue) {
+          return;
+        }
+
+        currentCount = nextCount;
+        counterValue.textContent = String(nextCount);
+      }
+
+      function readFallbackCount() {
+        try {
+          const storedValue = window.localStorage.getItem(fallbackStorageKey);
+          const parsedValue = Number(storedValue);
+          return Number.isFinite(parsedValue) && parsedValue >= 0 ? parsedValue : 0;
+        } catch {
+          return 0;
+        }
+      }
+
+      function writeFallbackCount(nextCount) {
+        try {
+          window.localStorage.setItem(fallbackStorageKey, String(nextCount));
+        } catch {
+          // Ignore storage failures and keep the in-memory value.
+        }
+      }
+
+      async function loadCount() {
+        try {
+          const response = await fetch('/api/tap-counter', {
+            headers: {
+              Accept: 'application/json',
+            },
+          });
+
+          if (!response.ok) {
+            return;
+          }
+
+          const data = await response.json();
+          counterEnabled = data.configured !== false;
+
+          if (!counterEnabled) {
+            renderCount(readFallbackCount());
+            return;
+          }
+
+          if (typeof data.count === 'number') {
+            renderCount(data.count);
+          }
+        } catch {
+          counterEnabled = false;
+          renderCount(readFallbackCount());
+        }
+      }
+
+      function queueIncrement(interaction) {
+        if (!counterEnabled) {
+          const fallbackCount = currentCount + 1;
+          writeFallbackCount(fallbackCount);
+          renderCount(fallbackCount);
+          return;
+        }
+
+        const optimisticCount = currentCount + 1;
+        renderCount(optimisticCount);
+
+        writeQueue = writeQueue.then(async () => {
+          try {
+            const response = await fetch('/api/tap-counter', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+              },
+              body: JSON.stringify({ interaction }),
+            });
+
+            if (!response.ok) {
+              throw new Error('Counter request failed.');
+            }
+
+            const data = await response.json();
+            counterEnabled = data.configured !== false;
+
+            if (!counterEnabled) {
+              const fallbackCount = readFallbackCount() + 1;
+              writeFallbackCount(fallbackCount);
+              renderCount(fallbackCount);
+              return;
+            }
+
+            if (typeof data.count === 'number') {
+              renderCount(data.count);
+            }
+          } catch {
+            counterEnabled = false;
+            const fallbackCount = Math.max(readFallbackCount(), currentCount - 1) + 1;
+            writeFallbackCount(fallbackCount);
+            renderCount(fallbackCount);
+          }
+        });
+      }
+
+      if (faceTrigger) {
+        faceTrigger.addEventListener('pointerenter', (event) => {
+          if (event.pointerType === 'mouse') {
+            queueIncrement('hover');
+          }
+        });
+
+        faceTrigger.addEventListener('click', () => {
+          queueIncrement('tap');
+        });
+      }
+
+      loadCount();
+    </script>
   </body>
 </html>
