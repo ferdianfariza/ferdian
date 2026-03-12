@@ -2,14 +2,18 @@
 ---
 
 
-<section class="flex gap-6 text-base font-semibold">
+<section class="flex w-full flex-col gap-4 text-base font-semibold sm:flex-row sm:items-center">
   <!-- <a href="/now" class="underline underline-offset-4 decoration-zinc-600 hover:decoration-zinc-400 transition-colors">Now</a> -->
-  <a href="https://www.linkedin.com/in/ferdian-nur-fariza/" target="_blank" class="underline underline-offset-4 decoration-zinc-600 hover:decoration-zinc-400 transition-colors">Let's Connect</a>
-  <a href="https://github.com/ferdianfariza" class="underline underline-offset-4 decoration-zinc-600 hover:decoration-zinc-400 transition-colors">GitHub</a>
-  <a href="mailto:hello@ferdian.me" class="underline underline-offset-4 decoration-zinc-600 hover:decoration-zinc-400 transition-colors">Mail</a>
+  <div class="flex flex-wrap items-center gap-6">
+    <a href="https://www.linkedin.com/in/ferdian-nur-fariza/" target="_blank" class="underline underline-offset-4 decoration-zinc-600 hover:decoration-zinc-400 transition-colors">Let's Connect</a>
+    <a href="https://github.com/ferdianfariza" class="underline underline-offset-4 decoration-zinc-600 hover:decoration-zinc-400 transition-colors">GitHub</a>
+    <a href="mailto:hello@ferdian.me" class="underline underline-offset-4 decoration-zinc-600 hover:decoration-zinc-400 transition-colors">Mail</a>
+  </div>
 
-  <span class="text-zinc-600">
-    Tap counter:
-    <span id="tap-counter-value">0</span>
-  </span>
+  <div class="w-full text-left sm:ml-auto sm:w-auto sm:text-right">
+    <span class="text-zinc-600">
+      Tap counter:
+      <span id="tap-counter-value">0</span>
+    </span>
+  </div>
 </section>

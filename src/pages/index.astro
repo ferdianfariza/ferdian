@@ -3,12 +3,12 @@
 import BaseHead from "../components/BaseHead.astro";
 import Analytics from '@vercel/analytics/astro';
 import ProfileBelow from "@/components/ProfileBelow.astro";
-import ProfileTop from "@/components/ProfileTop.astro";
 import ProfileMid from "@/components/ProfileMid.astro";
+
+
 
 // Constants
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import ProfilePhoto from "@/components/ProfilePhoto.astro";
 import FaceImg from "@/assets/asd.svg";
 ---
 
@@ -18,44 +18,20 @@ import FaceImg from "@/assets/asd.svg";
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <Analytics />
     <style>
-      @keyframes drift {
-        0%   { transform: translate(0, 0) scale(1); }
-        33%  { transform: translate(40px, -30px) scale(1.08); }
-        66%  { transform: translate(-30px, 20px) scale(0.95); }
-        100% { transform: translate(0, 0) scale(1); }
-      }
-      @keyframes drift2 {
-        0%   { transform: translate(0, 0) scale(1); }
-        33%  { transform: translate(-50px, 40px) scale(1.1); }
-        66%  { transform: translate(30px, -20px) scale(0.92); }
-        100% { transform: translate(0, 0) scale(1); }
-      }
-      @keyframes drift3 {
-        0%   { transform: translate(0, 0) scale(1); }
-        50%  { transform: translate(20px, 50px) scale(1.05); }
-        100% { transform: translate(0, 0) scale(1); }
-      }
-      @keyframes hoverPulse {
-        0%   { transform: scale(1) rotate(0deg); }
-        50%  { transform: scale(1.1) rotate(5deg); }
-        100% { transform: scale(1) rotate(0deg); }
-      }
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-      @keyframes fadeOut {
-        from { opacity: 1; }
-        to { opacity: 0; }
-      }
-      .svg-hover:hover {
-        animation: hoverPulse 0.6s ease-in-out;
+      .svg-hover {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 220ms ease;
+        transform-origin: center;
       }
       .hello-text {
         opacity: 0;
-        transition: opacity 0.4s ease-in-out;
+        pointer-events: none;
+        transition: opacity 220ms ease;
       }
-      .svg-hover:hover ~ .hello-text,
+      .face-container:hover .svg-hover {
+        transform: scale(1.08) rotate(4deg);
+      }
       .face-container:hover .hello-text {
         opacity: 1;
       }
@@ -64,32 +40,29 @@ import FaceImg from "@/assets/asd.svg";
         width: 520px; height: 520px;
         background: radial-gradient(circle, #86efac, #4ade80);
         top: -100px; left: -120px;
-        animation: drift 14s ease-in-out infinite;
       }
       .blob2 {
         position: fixed; z-index: -1; border-radius: 9999px; filter: blur(100px); opacity: 0.28;
         width: 600px; height: 600px;
         background: radial-gradient(circle, #93c5fd, #818cf8);
         bottom: -150px; right: -150px;
-        animation: drift2 18s ease-in-out infinite;
       }
       .blob3 {
         position: fixed; z-index: -1; border-radius: 9999px; filter: blur(90px); opacity: 0.22;
         width: 400px; height: 400px;
         background: radial-gradient(circle, #fde68a, #fb923c);
         bottom: 10%; left: 40%;
-        animation: drift3 22s ease-in-out infinite;
       }
     </style>
   </head>
-  <body class="bg-white font-serif leading-relaxed antialiased min-h-screen flex items-center justify-center px-6 py-12">
+  <body class="bg-white font-serif leading-relaxed antialiased min-h-screen flex items-center justify-center px-2">
     <div class="blob1"></div>
     <div class="blob2"></div>
     <div class="blob3"></div>
-    <main transition:animate="fade" class="w-full max-w-2xl">
+    <main class="w-full max-w-2xl">
       <div class="flex flex-col items-start">
         <!-- Face with yellow circle -->
-        <div class="face-container relative mb-8">
+        <div class="face-container relative mb-4">
           <div class="absolute inset-0 rounded-full bg-yellow-300 w-20 h-20"></div>
           <img id="face-trigger" src={FaceImg.src} alt="Ferdian's face" class="relative w-20 h-20 rounded-full z-10 svg-hover cursor-pointer" />
           <span class="hello-text absolute -top-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-sm font-medium">hello! 👋</span>
@@ -117,16 +90,19 @@ import FaceImg from "@/assets/asd.svg";
         </div>
       </div>
     </main>
-    <script is:inline>
+    <script>
+      import confetti from 'canvas-confetti';
+
       const faceTrigger = document.getElementById('face-trigger');
       const counterValue = document.getElementById('tap-counter-value');
       const fallbackStorageKey = 'face-tap-counter-local';
 
       let currentCount = 0;
       let counterEnabled = true;
+      let lastTapTimestamp = 0;
       let writeQueue = Promise.resolve();
 
-      function renderCount(nextCount) {
+      function renderCount(nextCount: number) {
         if (!counterValue) {
           return;
         }
@@ -145,12 +121,31 @@ import FaceImg from "@/assets/asd.svg";
         }
       }
 
-      function writeFallbackCount(nextCount) {
+      function writeFallbackCount(nextCount: number) {
         try {
           window.localStorage.setItem(fallbackStorageKey, String(nextCount));
         } catch {
           // Ignore storage failures and keep the in-memory value.
         }
+      }
+
+      function handleTap() {
+        if (!faceTrigger) {
+          return;
+        }
+
+        const rect = faceTrigger.getBoundingClientRect();
+        const originX = (rect.left + rect.width / 2) / window.innerWidth;
+        const originY = (rect.top + rect.height / 2) / window.innerHeight;
+
+        confetti({
+          particleCount: 55,
+          spread: 72,
+          startVelocity: 35,
+          origin: { x: originX, y: originY },
+        });
+
+        queueIncrement('tap');
       }
 
       async function loadCount() {
@@ -182,7 +177,7 @@ import FaceImg from "@/assets/asd.svg";
         }
       }
 
-      function queueIncrement(interaction) {
+      function queueIncrement(interaction: string) {
         if (!counterEnabled) {
           const fallbackCount = currentCount + 1;
           writeFallbackCount(fallbackCount);
@@ -231,14 +226,21 @@ import FaceImg from "@/assets/asd.svg";
       }
 
       if (faceTrigger) {
-        faceTrigger.addEventListener('pointerenter', (event) => {
+        faceTrigger.addEventListener('pointerup', (event) => {
           if (event.pointerType === 'mouse') {
-            queueIncrement('hover');
+            return;
           }
+
+          lastTapTimestamp = Date.now();
+          handleTap();
         });
 
         faceTrigger.addEventListener('click', () => {
-          queueIncrement('tap');
+          if (Date.now() - lastTapTimestamp < 500) {
+            return;
+          }
+
+          handleTap();
         });
       }
 
