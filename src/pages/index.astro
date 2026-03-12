@@ -97,11 +97,16 @@ import FaceImg from "@/assets/asd.svg";
       const faceTrigger = document.getElementById('face-trigger');
       const counterValue = document.getElementById('tap-counter-value');
       const fallbackStorageKey = 'face-tap-counter-local';
+      const FLUSH_INTERVAL_MS = 30_000;
+      const MAX_BATCH_SIZE = 20;
 
       let currentCount = 0;
       let counterEnabled = true;
       let lastTapTimestamp = 0;
-      let writeQueue = Promise.resolve();
+      let hasLoadedInitialCount = false;
+      let pendingTapCount = 0;
+      let flushTimerId: number | null = null;
+      let flushInProgress = false;
 
       function renderCount(nextCount: number) {
         if (!counterValue) {
@@ -146,7 +151,7 @@ import FaceImg from "@/assets/asd.svg";
           origin: { x: originX, y: originY },
         });
 
-        queueIncrement('tap');
+        queueIncrement();
       }
 
       async function loadCount() {
@@ -175,10 +180,64 @@ import FaceImg from "@/assets/asd.svg";
         } catch {
           counterEnabled = false;
           renderCount(readFallbackCount());
+        } finally {
+          hasLoadedInitialCount = true;
         }
       }
 
-      function queueIncrement(interaction: string) {
+      async function flushTapQueue(force = false) {
+        if (!counterEnabled || flushInProgress || pendingTapCount < 1) {
+          return;
+        }
+
+        const amount = pendingTapCount;
+        pendingTapCount = 0;
+        flushInProgress = true;
+
+        try {
+          const response = await fetch('/api/tap-counter', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify({ interaction: 'tap', amount }),
+            keepalive: force,
+          });
+
+          if (!response.ok) {
+            throw new Error('Counter request failed.');
+          }
+
+          const data = await response.json();
+          counterEnabled = data.configured !== false;
+
+          if (!counterEnabled) {
+            writeFallbackCount(currentCount);
+            return;
+          }
+
+          if (typeof data.count === 'number') {
+            renderCount(data.count);
+          }
+        } catch {
+          pendingTapCount += amount;
+        } finally {
+          flushInProgress = false;
+        }
+      }
+
+      function ensureFlushTimer() {
+        if (flushTimerId !== null) {
+          return;
+        }
+
+        flushTimerId = window.setInterval(() => {
+          void flushTapQueue();
+        }, FLUSH_INTERVAL_MS);
+      }
+
+      function queueIncrement() {
         if (!counterEnabled) {
           const fallbackCount = currentCount + 1;
           writeFallbackCount(fallbackCount);
@@ -186,44 +245,18 @@ import FaceImg from "@/assets/asd.svg";
           return;
         }
 
-        const optimisticCount = currentCount + 1;
-        renderCount(optimisticCount);
+        if (!hasLoadedInitialCount) {
+          void loadCount();
+        }
 
-        writeQueue = writeQueue.then(async () => {
-          try {
-            const response = await fetch('/api/tap-counter', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json',
-              },
-              body: JSON.stringify({ interaction }),
-            });
+        pendingTapCount += 1;
+        renderCount(currentCount + 1);
 
-            if (!response.ok) {
-              throw new Error('Counter request failed.');
-            }
+        ensureFlushTimer();
 
-            const data = await response.json();
-            counterEnabled = data.configured !== false;
-
-            if (!counterEnabled) {
-              const fallbackCount = readFallbackCount() + 1;
-              writeFallbackCount(fallbackCount);
-              renderCount(fallbackCount);
-              return;
-            }
-
-            if (typeof data.count === 'number') {
-              renderCount(data.count);
-            }
-          } catch {
-            counterEnabled = false;
-            const fallbackCount = Math.max(readFallbackCount(), currentCount - 1) + 1;
-            writeFallbackCount(fallbackCount);
-            renderCount(fallbackCount);
-          }
-        });
+        if (pendingTapCount >= MAX_BATCH_SIZE) {
+          void flushTapQueue();
+        }
       }
 
       if (faceTrigger) {
@@ -244,6 +277,16 @@ import FaceImg from "@/assets/asd.svg";
           handleTap();
         });
       }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+          void flushTapQueue(true);
+        }
+      });
+
+      window.addEventListener('pagehide', () => {
+        void flushTapQueue(true);
+      });
 
       loadCount();
     </script>

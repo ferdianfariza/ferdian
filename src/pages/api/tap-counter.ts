@@ -69,6 +69,8 @@ export const POST: APIRoute = async ({ request }) => {
   const body = await request.json().catch(() => ({}));
   const interaction =
     body && typeof body.interaction === "string" ? body.interaction : "unknown";
+  const amount =
+    body && typeof body.amount === "number" ? Math.trunc(body.amount) : 1;
 
   if (!["hover", "tap"].includes(interaction)) {
     return new Response(
@@ -80,6 +82,13 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
+  if (!Number.isFinite(amount) || amount < 1) {
+    return new Response(JSON.stringify({ error: "Invalid amount." }), {
+      status: 400,
+      headers: responseHeaders,
+    });
+  }
+
   const redis = getRedisClient();
   if (!redis) {
     return new Response(JSON.stringify({ count: 0, configured: false }), {
@@ -88,7 +97,10 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  const count = await redis.incr(COUNTER_KEY);
+  const count =
+    amount === 1
+      ? await redis.incr(COUNTER_KEY)
+      : await redis.incrby(COUNTER_KEY, amount);
 
   return new Response(JSON.stringify({ count, configured: true }), {
     status: 200,
