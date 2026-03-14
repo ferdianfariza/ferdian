@@ -1,0 +1,11 @@
+# Allow all bots to crawl and index
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.astro/
+
+# Specify sitemap
+Sitemap: https://ferdian.me/sitemap-index.xml
+
+# Crawl delay (optional - be polite to server resources)
+Crawl-delay: 1

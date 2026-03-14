@@ -1,0 +1,20 @@
+---
+import FaceImg from "@/assets/asd.svg";
+---
+
+<div class="face-container relative mb-4">
+  <div class="absolute inset-0 rounded-full bg-yellow-300 w-20 h-20"></div>
+  <img
+    id="face-trigger"
+    src={FaceImg.src}
+    alt="Ferdian's face"
+    class="relative w-20 h-20 rounded-full z-10 svg-hover cursor-pointer"
+  />
+  <span class="hello-text absolute -right-18 top-1/2 transform -translate-y-1/2 whitespace-nowrap text-sm font-medium"
+    >hello! 👋</span
+  >
+</div>
+
+<script>
+  import '@/scripts/face-interactions';
+</script>

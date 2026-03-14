@@ -1,0 +1,125 @@
+.svg-hover {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 220ms ease;
+  transform-origin: center;
+}
+
+.hello-text {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.face-container:hover .svg-hover {
+  transform: scale(1.08) rotate(4deg);
+}
+
+.face-container:hover .hello-text {
+  opacity: 1;
+}
+
+.blob-group {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  animation: rotateGroup 40s linear infinite;
+}
+
+.blob1 {
+  position: fixed;
+  z-index: -1;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.55;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, #86efac, #4ade80);
+  top: -100px;
+  left: -120px;
+}
+
+.blob2 {
+  position: fixed;
+  z-index: -1;
+  border-radius: 9999px;
+  filter: blur(100px);
+  opacity: 0.48;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #93c5fd, #818cf8);
+  bottom: -150px;
+  right: -150px;
+}
+
+.blob3 {
+  position: fixed;
+  z-index: -1;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.42;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #fde68a, #fb923c);
+  bottom: 10%;
+  left: 40%;
+}
+
+@keyframes rotateGroup {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.face-click {
+  animation: clickBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes clickBounce {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.15) rotate(-8deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(8deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(-4deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+#tap-counter-value {
+  display: inline-block;
+  transition: transform 0.3s ease-out;
+}
+
+#tap-counter-value.counter-pop {
+  animation: counterPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes counterPop {
+  0% {
+    transform: scale(1);
+    color: currentColor;
+  }
+  50% {
+    transform: scale(1.3);
+    color: #22c55e;
+  }
+  100% {
+    transform: scale(1);
+    color: currentColor;
+  }
+}

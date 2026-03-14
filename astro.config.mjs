@@ -12,8 +12,16 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   adapter: vercel(),
-  site: "https://example.com",
-  integrations: [mdx(), sitemap(), react()],
+  site: "https://ferdian.is-a.dev/", // Update this to your actual domain
+  integrations: [
+    mdx(),
+    sitemap({
+      changefreq: "weekly",
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
+    react(),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },
