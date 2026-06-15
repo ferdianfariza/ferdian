@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "@fontsource-variable/roboto-mono";
 @import "@fontsource-variable/roboto-serif";
-@import "@fontsource/fira-mono";
 
 @variant dark (&:where(.dark, .dark *));
 

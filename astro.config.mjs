@@ -11,6 +11,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "server", // atau "hybrid"
   site: "https://ferdian.is-a.dev",
   integrations: [mdx(), sitemap(), react()],
   vite: {
