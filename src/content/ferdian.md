@@ -1,7 +1,7 @@
 ---
-title: "Ferdian N. Fariza"
+title: "Ferdian N. **Fariza**"
 author: "Ben"
-sex: "Ferdian nur is the best"
+sex: "Ferdian nur is the **best**"
 ---
 
 Here is my _great_ post!

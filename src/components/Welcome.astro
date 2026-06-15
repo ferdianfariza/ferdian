@@ -16,7 +16,7 @@ const value = 3035
   if (theme === "dark") document.documentElement.classList.add("dark");
 </script>
 
-<div class="md:border max-w-4xl mx-auto my-10 p-5 text-xs">
+<div class="md:border max-w-4xl mx-auto h-auto mb-100 mt-10 p-5 text-xs">
 	<div class="mb-15">
 		<div class="flex justify-between border-y py-2">
 			<p>Ferdian N. Fariza</p>
@@ -51,12 +51,54 @@ const value = 3035
 				<strong>useful</strong> tools 
 			</p>
 		</div>
-		<div class="flex flex-row max-w-3xl mx-auto gap-10">
+		<div class="grid grid-cols-2 max-w-2xl mx-auto gap-7">
 			<p class="text-base text-right">
 				undergraduate informatics engineering at Dian Nuswantoro University, minoring in ai engineering.
 			</p>
 			<p class="text-base text-left">
 				currently at research assistant at IDSS and Project Lead Intern intern PT. Lumintu Group.
+			</p>
+		</div>
+	</div>
+	<hr class="my-10 mx-auto max-w-2xl">
+	<div class="max-w-2xl grid grid-cols-2 leading-loose gap-5 mx-auto text-sm">
+			<p class="text-left">
+				Collaborating with my fellows and lecturers while presenting weekly about our research progress. Our team is focusing on Artificial Intelligence for conservation and disaster 
+				<br>
+				<br>
+				it’s a serious and fun at the same time, as i get to learn from different perspectives. i also share workflow and practices through tutorial videos as the part of collaborating.
+			</p>
+		<img id="themelogo" src={LogoDark.src} alt="Logo" />
+	</div>
+	<hr class="my-10 mx-auto max-w-2xl">
+	<div class="max-w-2xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-sm">
+		<div class="gap-10">
+			<p class="text-left">
+				and beside that, now i led team of 4 in PT LUMINTU GROUP building company brand called ARCES from scratch. from just a brief to brand identity and fully working CMS app to manage the brand website. you can visit the website here.
+				<br>
+				<br>
+				Im responsible for the tech stack, code quality, technical direction, version control, communications, and timeline management to make sure everything is on track. big shoutout to my teams for all the hardwork.
+			</p>
+		</div>
+	</div>
+	<hr class="my-10 mx-auto max-w-2xl">
+	<div class="max-w-2xl grid grid-cols-2 leading-loose gap-5  mx-auto text-sm">
+			<p class="text-left">
+				In  May 9, 2026 i started internship at PT Telkom Indonesia as an AI Engineering. Working on fine-tuning FunctionGemma 270M and integrating it into internat chatbot, employees now can just checking the inventory by chatting using natural language. it’s cut almost half of the time by eliminating manual steps and ui interactions in web app.
+				<br>
+				<br>
+				Also, I led a team of three members, coordinating between UI/UX designers and developers while making sure the development timeline on track.
+			</p>
+			<img id="themelogo" src={LogoDark.src} alt="Logo" />
+	</div>
+	<hr class="my-10 mx-auto max-w-2xl">
+	<div class="max-w-xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-sm">
+		<div class="gap-10">
+			<p class="text-center">
+				in my first year in college, i landed an internship with Universitas Dian Nuswantoro Public Relation Teams as a Creative Design. although it was internship it felt more like freelance work, giving me opportunity to work in engineering based project.
+				<br>
+				<br>
+				in 10 months i learn a lot from senior employee things like communications, giving arguments, handling briefings. those things build the foundation for how i led teams, collaborate with others and manage projects today. 
 			</p>
 		</div>
 	</div>
@@ -113,7 +155,6 @@ const value = 3035
   });
 </script>
 
-<!-- 
 <div class="grid grid-cols-5 gap-4">
 </div>
 <p>{greatPost.frontmatter.title}</p>
@@ -123,5 +164,5 @@ const value = 3035
 
 
 
-<Fragment set:html={compiled} /> -->
+<Fragment set:html={compiled} />
 
