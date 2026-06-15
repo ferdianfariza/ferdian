@@ -4,9 +4,11 @@ import {ToggleRightIcon, ToggleLeftIcon, ArrowUpRightIcon} from "@phosphor-icons
 import { ThemeToggle } from "./ThemeToggle";
 import LogoDark from "../assets/hero-dark.svg";
 import LogoLight from "../assets/hero-light.svg";
+import idss from "../assets/idss.png";
+import telkoms from "../assets/telkom.png";
 
 const compiled = await greatPost.compiledContent();
-const [research, arces, telkom, udinus] = compiled.split('<hr>');
+const [research, arces, telkom, udinus, outro] = compiled.split('<hr>');
 
 let clacks = 0;
 try {
@@ -25,7 +27,7 @@ try {
   if (theme === "dark") document.documentElement.classList.add("dark");
 </script>
 
-<div class="md:border max-w-4xl mx-auto h-auto mb-100 mt-10 p-5 text-xs">
+<div class="md:border max-w-4xl mx-auto h-auto mb-50 mt-2 md:mt-10 p-5 text-xs">
 	<div class="mb-15">
 		<div class="flex justify-between border-y py-2">
 			<p>Ferdian N. Fariza</p>
@@ -33,25 +35,25 @@ try {
 			<ThemeToggle client:load />
 		</div>
 		<div class="flex justify-between border-b py-2">
-			<div class="flex gap-2">
+			<a href="https://www.linkedin.com/in/ferdian-nur-fariza/" target="_blank" rel="noopener noreferrer" class="flex gap-2 hover:opacity-70 transition-opacity">
 				<p>Let's Connect</p>
 				<ArrowUpRightIcon size={10} weight="light" />
-			</div>
-			<div class="flex gap-2">
+			</a>
+			<a href="https://github.com/ferdianfariza" target="_blank" rel="noopener noreferrer" class="flex gap-2 hover:opacity-70 transition-opacity">
 				<p>GitHub</p>
 				<ArrowUpRightIcon size={10} weight="light" />
-			</div>
-			<div class="flex gap-2">
+			</a>
+			<a href="mailto:ferdianfariza@gmail.com" class="flex gap-2 hover:opacity-70 transition-opacity">
 				<p>Mail</p>
 				<ArrowUpRightIcon size={10} weight="light" />
-			</div>
+			</a>
 			<div class="flex gap-2 font-bold">
 				<p>Clackz: <span id="clacks-display">{clacks}</span></p>
 			</div>
 		</div>
 	</div>
 	<div class="flex flex-col gap-5 leading-loose gap-y-10">
-		<img id="themelogo" src={LogoDark.src} alt="Logo" />
+		<img id="themelogo" src={LogoDark.src} alt="Hero Image" />
 		<div>
 			<p class="text-4xl text-center tracking-tight">
 				love <strong>crafting</strong> llm into 
@@ -70,11 +72,11 @@ try {
 		</div>
 	</div>
 	<hr class="my-10 mx-auto max-w-2xl">
-	<div class="max-w-2xl grid grid-cols-2 leading-loose gap-5 mx-auto text-sm">
+	<div class="max-w-2xl grid grid-cols-1 md:grid-cols-2 leading-loose gap-5 mx-auto text-sm items-center justify-items-center md:items-start md:justify-items-start">
+		<img src={idss.src} alt="Research assistant in IDSS" class="order-first md:order-last"/>
 		<div class="flex flex-col gap-4">
 			<Fragment set:html={research} />
 		</div>
-		<img id="themelogo" src={LogoDark.src} alt="Logo" />
 	</div>
 	<hr class="my-10 mx-auto max-w-2xl">
 	<div class="max-w-2xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-sm">
@@ -83,11 +85,11 @@ try {
 		</div>
 	</div>
 	<hr class="my-10 mx-auto max-w-2xl">
-	<div class="max-w-2xl grid grid-cols-2 leading-loose gap-5  mx-auto text-sm">
+	<div class="max-w-2xl grid grid-cols-1 md:grid-cols-2 leading-loose gap-5 mx-auto text-sm items-center justify-items-center md:items-start md:justify-items-start">
+		<img src={telkoms.src} alt="Intern at telkom" />
 		<div class="flex flex-col gap-4">
 			<Fragment set:html={telkom} />
 		</div>
-		<img id="themelogo" src={LogoDark.src} alt="Logo" />
 	</div>
 	<hr class="my-10 mx-auto max-w-2xl">
 	<div class="max-w-xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-sm">
@@ -95,7 +97,19 @@ try {
 			<Fragment set:html={udinus} />
 		</div>
 	</div>
+	<hr class="my-10 mx-auto max-w-2xl">
+	<div class="max-w-xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-base">
+		<div class="flex flex-col gap-0 text-center">
+			<Fragment set:html={outro} />
+		</div>
+		<div class="flex justify-center mb-20">
+			<a href="mailto:ferdianfariza@gmail.com" class="bg-yellow-300 hover:bg-yellow-400 text-black font-bold px-8 py-5 transition-colors cursor-pointer inline-block text-center text-xl">
+				Let's create something great together.
+			</a>
+		</div>
+	</div>
 </div>
+<div class="h-2"></div>
 
 <script>
   import dayjs from "dayjs";

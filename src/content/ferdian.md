@@ -24,3 +24,9 @@ Also, I _led a team of three members_, coordinating between UI/UX designers and 
 in my first year in college, i landed an internship with **Universitas Dian Nuswantoro** Public Relation Teams as a Creative Design. although it was internship it felt more like freelance work, giving me opportunity to work in engineering based project.
 
 in 10 months i learn a lot from senior employee things like communications, giving arguments, handling briefings. those things build the foundation for how i led teams, collaborate with others and manage projects today.
+
+---
+
+our society build on top of communities.
+
+I believe a great products, comes with a great teams.
