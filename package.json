@@ -15,6 +15,7 @@
     "@astrojs/mdx": "^6.0.3",
     "@astrojs/react": "^5.0.7",
     "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/vercel": "^10.0.8",
     "@fontsource-variable/roboto-mono": "^5.2.9",
     "@fontsource-variable/roboto-serif": "^5.2.9",
     "@phosphor-icons/react": "^2.1.10",
