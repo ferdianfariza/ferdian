@@ -10,7 +10,7 @@ interface Props {
   wrapperClass?: string;
 }
 
-const { title, description, wrapperClass = "mb-50" } = Astro.props;
+const { title, description, wrapperClass = "mb-1" } = Astro.props;
 
 let clacks = 0;
 try {
@@ -44,7 +44,7 @@ try {
 	</head>
 	<body>
     <div class={`md:border max-w-3xl mx-auto h-auto mt-2 md:mt-10 p-5 text-xs ${wrapperClass}`}>
-      <div class="mb-15">
+      <div class="mb-10">
         <div class="flex justify-between border-y py-2">
           <a href="/" class="hover:opacity-70 transition-opacity font-medium" aria-label="Back to home">
             Ferdian N. Fariza
@@ -80,6 +80,7 @@ try {
       <slot />
     </div>
 	</body>
+  <div class="h-1 md:h-25"></div>
 </html>
 
 <script>

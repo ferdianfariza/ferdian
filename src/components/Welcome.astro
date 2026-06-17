@@ -4,6 +4,7 @@ import LogoDark from "../assets/hero-dark.svg";
 import LogoLight from "../assets/hero-light.svg";
 import idss from "../assets/idss.png";
 import telkoms from "../assets/telkom.png";
+import {GithubLogoIcon, LinkedinLogoIcon, MailboxIcon } from "@phosphor-icons/react";
 
 const compiled = await greatPost.compiledContent();
 const [research, arces, telkom, udinus, outro] = compiled.split('<hr>');
@@ -42,7 +43,7 @@ const [research, arces, telkom, udinus, outro] = compiled.split('<hr>');
 </div>
 <hr class="my-10 mx-auto max-w-2xl">
 <div class="max-w-2xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-sm">
-	<div class="flex flex-col gap-4">
+	<div class="grid md:grid-cols-2  gap-4">
 		<Fragment set:html={arces} />
 	</div>
 </div>
@@ -54,23 +55,33 @@ const [research, arces, telkom, udinus, outro] = compiled.split('<hr>');
 	</div>
 </div>
 <hr class="my-10 mx-auto max-w-2xl">
-<div class="max-w-xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-sm">
-	<div class="flex flex-col gap-4 text-center">
+<div class="max-w-2xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-sm">
+	<div class="grid md:grid-cols-2 gap-4 text-left">
 		<Fragment set:html={udinus} />
 	</div>
 </div>
 <hr class="my-10 mx-auto max-w-2xl">
-<div class="max-w-xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-base">
-	<div class="flex flex-col gap-0 text-center">
+<div class="max-w-2xl grid md:grid-cols-2 leading-loose gap-y-10 gap-5 mx-auto text-base">
+	<div class="flex flex-col text-left">
 		<Fragment set:html={outro} />
 	</div>
-	<div class="flex justify-center mb-20">
-		<a href="mailto:ferdianfariza@gmail.com" class="bg-yellow-300 hover:bg-yellow-400 text-black font-bold px-8 py-5 transition-colors cursor-pointer inline-block text-center text-xl">
-			Let's create something great together.
-		</a>
+	<div class="flex flex-col gap-2 mt-2">
+		<div class="flex justify-left gap-5">
+			<a href="https://github.com/ferdianfariza" target="_blank" rel="noopener noreferrer" class="cursor-pointer hover:-translate-y-1 hover:opacity-70 transition-all duration-200">
+				<GithubLogoIcon size={23}>
+				</GithubLogoIcon>
+			</a>
+			<a href="https://www.linkedin.com/in/ferdian-nur-fariza/" target="_blank" rel="noopener noreferrer" class="cursor-pointer hover:-translate-y-1 hover:opacity-70 transition-all duration-200">
+				<LinkedinLogoIcon size={23}>
+				</LinkedinLogoIcon>
+			</a>
+			<a href="mailto:ferdianfariza@gmail.com" class="cursor-pointer hover:-translate-y-1 hover:opacity-70 transition-all duration-200">
+				<MailboxIcon size={23}>
+				</MailboxIcon>
+			</a>
+		</div>
 	</div>
 </div>
-<div class="h-2"></div>
 
 <script define:vars={{ logoDarkSrc: LogoDark.src, logoLightSrc: LogoLight.src }}>
   function updateLogo() {

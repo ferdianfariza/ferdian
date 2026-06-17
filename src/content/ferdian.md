@@ -27,6 +27,4 @@ in 10 months i learn a lot from senior employee things like communications, givi
 
 ---
 
-our society build on top of communities.
-
-I believe a great products, comes with a great teams.
+our society build on top of communities. I believe a great products, comes with a great teams.
