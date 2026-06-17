@@ -16,6 +16,7 @@
     "@astrojs/react": "^5.0.7",
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/vercel": "^10.0.8",
+    "@fontsource-variable/besley": "^5.2.8",
     "@fontsource-variable/merriweather": "^5.2.6",
     "@fontsource-variable/roboto-mono": "^5.2.9",
     "@fontsource-variable/roboto-serif": "^5.2.9",
