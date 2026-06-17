@@ -23,7 +23,7 @@ export function ThemeToggle() {
       onClick={handleToggle}
       className="flex items-center gap-2 cursor-pointer"
     >
-      <p>Light switch</p>
+      <p>Switcher</p>
       {isLight ? (
         <ToggleRightIcon size={16} weight="light" />
       ) : (

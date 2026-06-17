@@ -1,14 +1,15 @@
 @import "tailwindcss";
 @import "@fontsource-variable/roboto-mono";
 @import "@fontsource-variable/roboto-serif";
+@import "@fontsource-variable/merriweather";
 
 @variant dark (&:where(.dark, .dark *));
 
 :root {
   --color-bg: #ffffff;
-  --color-text: rgba(42, 0, 141, 1);
-  --color-border: rgba(42, 0, 141, 0.8);
-  --font-mono: "Roboto Serif Variable", serif; /* dark mode */
+  --color-text: rgb(45, 45, 45);
+  --color-border: rgba(45, 45, 45, 0.4);
+  --font-mono: "Merriweather Variable", serif; /* dark mode */
 }
 
 .dark {
