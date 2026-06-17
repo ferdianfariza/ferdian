@@ -1,7 +1,5 @@
 ---
 import * as greatPost from '../content/ferdian.md';
-import {ToggleRightIcon, ToggleLeftIcon, ArrowUpRightIcon} from "@phosphor-icons/react";
-import { ThemeToggle } from "./ThemeToggle";
 import LogoDark from "../assets/hero-dark.svg";
 import LogoLight from "../assets/hero-light.svg";
 import idss from "../assets/idss.png";
@@ -9,17 +7,6 @@ import telkoms from "../assets/telkom.png";
 
 const compiled = await greatPost.compiledContent();
 const [research, arces, telkom, udinus, outro] = compiled.split('<hr>');
-
-let clacks = 0;
-try {
-  const response = await fetch(new URL('/api/tap-counter', Astro.url));
-  if (response.ok) {
-    const data = await response.json();
-    clacks = data.count ?? 0;
-  }
-} catch {
-  clacks = 0;
-}
 ---
 
 <script is:inline>
@@ -27,120 +14,63 @@ try {
   if (theme === "dark") document.documentElement.classList.add("dark");
 </script>
 
-<div class="md:border max-w-4xl mx-auto h-auto mb-50 mt-2 md:mt-10 p-5 text-xs">
-	<div class="mb-15">
-		<div class="flex justify-between border-y py-2">
-			<p>Ferdian N. Fariza</p>
-			<div id="clock"></div>
-			<ThemeToggle client:load />
-		</div>
-		<div class="flex justify-between border-b py-2">
-			<a href="https://www.linkedin.com/in/ferdian-nur-fariza/" target="_blank" rel="noopener noreferrer" class="flex gap-2 hover:opacity-70 transition-opacity">
-				<p>Let's Connect</p>
-				<ArrowUpRightIcon size={10} weight="light" />
-			</a>
-			<a href="https://github.com/ferdianfariza" target="_blank" rel="noopener noreferrer" class="flex gap-2 hover:opacity-70 transition-opacity">
-				<p>GitHub</p>
-				<ArrowUpRightIcon size={10} weight="light" />
-			</a>
-			<a href="mailto:ferdianfariza@gmail.com" class="flex gap-2 hover:opacity-70 transition-opacity">
-				<p>Mail</p>
-				<ArrowUpRightIcon size={10} weight="light" />
-			</a>
-			<div class="flex gap-2 font-bold">
-				<p>Clackz: <span id="clacks-display">{clacks}</span></p>
-			</div>
-		</div>
+<div class="flex flex-col gap-5 leading-loose gap-y-10">
+	<img id="themelogo" src={LogoDark.src} alt="Hero Image" />
+	<div>
+		<p class="text-4xl text-center tracking-tight">
+			love <strong>crafting</strong> llm into 
+		</p>
+		<p class="text-4xl text-center tracking-tight">
+			<strong>useful</strong> tools 
+		</p>
 	</div>
-	<div class="flex flex-col gap-5 leading-loose gap-y-10">
-		<img id="themelogo" src={LogoDark.src} alt="Hero Image" />
-		<div>
-			<p class="text-4xl text-center tracking-tight">
-				love <strong>crafting</strong> llm into 
-			</p>
-			<p class="text-4xl text-center tracking-tight">
-				<strong>useful</strong> tools 
-			</p>
-		</div>
-		<div class="grid grid-cols-2 max-w-2xl mx-auto gap-7">
-			<p class="text-base text-right">
-				undergraduate informatics engineering at Dian Nuswantoro University, minoring in ai engineering.
-			</p>
-			<p class="text-base text-left">
-				currently at research assistant at IDSS and Project Lead Intern intern PT. Lumintu Group.
-			</p>
-		</div>
+	<div class="grid grid-cols-2 max-w-2xl mx-auto gap-7">
+		<p class="text-base text-right">
+			undergraduate informatics engineering at Dian Nuswantoro University, minoring in ai engineering.
+		</p>
+		<p class="text-base text-left">
+			currently at research assistant at IDSS and Project Lead Intern intern PT. Lumintu Group.
+		</p>
 	</div>
-	<hr class="my-10 mx-auto max-w-2xl">
-	<div class="max-w-2xl grid grid-cols-1 md:grid-cols-2 leading-loose gap-5 mx-auto text-sm items-center justify-items-center md:items-start md:justify-items-start">
-		<img src={idss.src} alt="Research assistant in IDSS" class="order-first md:order-last"/>
-		<div class="flex flex-col gap-4">
-			<Fragment set:html={research} />
-		</div>
+</div>
+<hr class="my-10 mx-auto max-w-2xl">
+<div class="max-w-2xl grid grid-cols-1 md:grid-cols-2 leading-loose gap-5 mx-auto text-sm items-center justify-items-center md:items-start md:justify-items-start">
+	<img src={idss.src} alt="Research assistant in IDSS" class="order-first md:order-last"/>
+	<div class="flex flex-col gap-4">
+		<Fragment set:html={research} />
 	</div>
-	<hr class="my-10 mx-auto max-w-2xl">
-	<div class="max-w-2xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-sm">
-		<div class="flex flex-col gap-4">
-			<Fragment set:html={arces} />
-		</div>
+</div>
+<hr class="my-10 mx-auto max-w-2xl">
+<div class="max-w-2xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-sm">
+	<div class="flex flex-col gap-4">
+		<Fragment set:html={arces} />
 	</div>
-	<hr class="my-10 mx-auto max-w-2xl">
-	<div class="max-w-2xl grid grid-cols-1 md:grid-cols-2 leading-loose gap-5 mx-auto text-sm items-center justify-items-center md:items-start md:justify-items-start">
-		<img src={telkoms.src} alt="Intern at telkom" />
-		<div class="flex flex-col gap-4">
-			<Fragment set:html={telkom} />
-		</div>
+</div>
+<hr class="my-10 mx-auto max-w-2xl">
+<div class="max-w-2xl grid grid-cols-1 md:grid-cols-2 leading-loose gap-5 mx-auto text-sm items-center justify-items-center md:items-start md:justify-items-start">
+	<img src={telkoms.src} alt="Intern at telkom" />
+	<div class="flex flex-col gap-4">
+		<Fragment set:html={telkom} />
 	</div>
-	<hr class="my-10 mx-auto max-w-2xl">
-	<div class="max-w-xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-sm">
-		<div class="flex flex-col gap-4 text-center">
-			<Fragment set:html={udinus} />
-		</div>
+</div>
+<hr class="my-10 mx-auto max-w-2xl">
+<div class="max-w-xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-sm">
+	<div class="flex flex-col gap-4 text-center">
+		<Fragment set:html={udinus} />
 	</div>
-	<hr class="my-10 mx-auto max-w-2xl">
-	<div class="max-w-xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-base">
-		<div class="flex flex-col gap-0 text-center">
-			<Fragment set:html={outro} />
-		</div>
-		<div class="flex justify-center mb-20">
-			<a href="mailto:ferdianfariza@gmail.com" class="bg-yellow-300 hover:bg-yellow-400 text-black font-bold px-8 py-5 transition-colors cursor-pointer inline-block text-center text-xl">
-				Let's create something great together.
-			</a>
-		</div>
+</div>
+<hr class="my-10 mx-auto max-w-2xl">
+<div class="max-w-xl grid grid-cols-1 leading-loose gap-y-10  mx-auto text-base">
+	<div class="flex flex-col gap-0 text-center">
+		<Fragment set:html={outro} />
+	</div>
+	<div class="flex justify-center mb-20">
+		<a href="mailto:ferdianfariza@gmail.com" class="bg-yellow-300 hover:bg-yellow-400 text-black font-bold px-8 py-5 transition-colors cursor-pointer inline-block text-center text-xl">
+			Let's create something great together.
+		</a>
 	</div>
 </div>
 <div class="h-2"></div>
-
-<script>
-  import dayjs from "dayjs";
-
-  const clock = document.getElementById("clock");
-  let prev = { hh: "", mm: "", ss: "" };
-
-  function part(val, changed) {
-    const cls = changed ? "clock-part" : "clock-static";
-    return `<span class="${cls}">${val}</span>`;
-  }
-
-  function update() {
-    const now = dayjs();
-    const hh = now.format("HH");
-    const mm = now.format("mm");
-    const ss = now.format("ss");
-
-    clock.innerHTML =
-      part(hh, hh !== prev.hh) +
-      `<span>:</span>` +
-      part(mm, mm !== prev.mm) +
-      `<span>:</span>` +
-      part(ss, ss !== prev.ss);
-
-    prev = { hh, mm, ss };
-  }
-
-  update();
-  setInterval(update, 1000);
-</script>
 
 <script define:vars={{ logoDarkSrc: LogoDark.src, logoLightSrc: LogoLight.src }}>
   function updateLogo() {
@@ -160,230 +90,4 @@ try {
     attributes: true,
     attributeFilter: ['class']
   });
-</script>
-
-<script>
-const ASCII = ['/', '\\', '|', '*', '#', '+', '~', '>', '<', '!', '@', '%', '1','0', ']', '?'];
-
-const canvas = document.createElement('canvas');
-canvas.style.cssText =
-  'position:fixed;top:0;left:0;pointer-events:none;z-index:9999;';
-document.body.appendChild(canvas);
-
-const ctx = canvas.getContext('2d');
-let particles = [];
-
-function resize() {
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-}
-
-resize();
-window.addEventListener('resize', resize);
-
-function spawnBurst(x, y, count = 20) {
-  for (let i = 0; i < count; i++) {
-    const angle =
-      (Math.PI * 2 / count) * i + (Math.random() - 0.5) * 0.6;
-
-    const speed = 2.5 + Math.random() * 3.5;
-
-    particles.push({
-      x,
-      y,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed - 1.5,
-      char: ASCII[Math.floor(Math.random() * ASCII.length)],
-      opacity: 1,
-      size: 11 + Math.random() * 9,
-    });
-  }
-}
-
-document.addEventListener('click', (e) => {
-  spawnBurst(e.clientX, e.clientY);
-});
-
-(function loop() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  particles = particles.filter((p) => p.opacity > 0);
-
-  const isDark = document.documentElement.classList.contains('dark');
-
-  for (const p of particles) {
-    ctx.globalAlpha = p.opacity;
-    ctx.fillStyle = isDark ? '#A8C06A' : '#2A008D';
-    ctx.font = `${Math.round(p.size)}px monospace`;
-
-    ctx.fillText(p.char, p.x, p.y);
-
-    p.x += p.vx;
-    p.y += p.vy;
-    p.vy += 0.13;
-    p.opacity -= 0.021;
-  }
-
-  ctx.globalAlpha = 1;
-  requestAnimationFrame(loop);
-})();
-</script>
-
-<script>
-  const clacksEl = document.getElementById('clacks-display');
-  
-  const OPTIMISTIC_KEY = "face-tap-counter-optimistic";
-  const FALLBACK_KEY = "face-tap-counter-local";
-  const FLUSH_INTERVAL_MS = 30_000;
-  const MAX_BATCH_SIZE = 20;
-
-  let currentClacks = Number(clacksEl?.textContent?.trim() ?? 0);
-  let pendingTaps = 0;
-  let flushInProgress = false;
-  let flushTimerId = null;
-  let counterEnabled = true;
-  let hasLoaded = false; // ← flag biar tidak tulis optimistic sebelum server load
-
-  // ── LocalStorage helpers ──
-  function readOptimistic() {
-    try {
-      const n = Number(localStorage.getItem(OPTIMISTIC_KEY));
-      return Number.isFinite(n) && n >= 0 ? n : 0;
-    } catch { return 0; }
-  }
-
-  function writeOptimistic(count) {
-    try { localStorage.setItem(OPTIMISTIC_KEY, String(count)); } catch {}
-  }
-
-  function clearOptimistic() {
-    try { localStorage.removeItem(OPTIMISTIC_KEY); } catch {}
-  }
-
-  function readFallback() {
-    try {
-      const n = Number(localStorage.getItem(FALLBACK_KEY));
-      return Number.isFinite(n) && n >= 0 ? n : 0;
-    } catch { return 0; }
-  }
-
-  // ── Animasi digit (sama kayak jam) ──
-  function animateClacks(newVal) {
-    if (!clacksEl) return;
-
-    const oldStr = String(currentClacks).padStart(String(newVal).length, '0');
-    const newStr = String(newVal);
-
-    clacksEl.innerHTML = newStr
-      .split('')
-      .map((char, i) => {
-        const changed = char !== oldStr[i];
-        return `<span class="${changed ? 'clock-part' : 'clock-static'}">${char}</span>`;
-      })
-      .join('');
-
-    currentClacks = newVal;
-  }
-
-  // ── Load awal dari server ──
-  async function loadCount() {
-    try {
-      const res = await fetch('/api/tap-counter', {
-        headers: { Accept: 'application/json' }
-      });
-
-      if (!res.ok) throw new Error();
-
-      const data = await res.json();
-      counterEnabled = data.configured !== false;
-
-      if (!counterEnabled) {
-        animateClacks(readFallback());
-        return;
-      }
-
-      if (typeof data.count === 'number') {
-        const optimistic = readOptimistic();
-        const display = Math.max(data.count, optimistic);
-        animateClacks(display);
-        clearOptimistic(); // ← selalu clear setelah load dari server
-      }
-    } catch {
-      counterEnabled = false;
-      animateClacks(readFallback());
-    } finally {
-      hasLoaded = true; // ← baru boleh tulis optimistic setelah ini
-    }
-  }
-
-  // ── Flush batch ke server ──
-  async function flushTaps(force = false) {
-    if (!counterEnabled || flushInProgress || pendingTaps < 1) return;
-
-    const amount = pendingTaps;
-    pendingTaps = 0;
-    flushInProgress = true;
-
-    try {
-      const res = await fetch('/api/tap-counter', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({ interaction: 'tap', amount }),
-        keepalive: force,
-      });
-
-      if (res.status === 429) {
-        counterEnabled = false;
-        setTimeout(() => { counterEnabled = true; }, 60_000);
-        return;
-      }
-
-      if (!res.ok) throw new Error();
-
-      const data = await res.json();
-      counterEnabled = data.configured !== false;
-
-      if (typeof data.count === 'number') {
-        animateClacks(data.count);
-        clearOptimistic(); // server sudah sync
-      }
-    } catch {
-      pendingTaps += amount;
-    } finally {
-      flushInProgress = false;
-    }
-  }
-
-  function ensureFlushTimer() {
-    if (flushTimerId !== null) return;
-    flushTimerId = window.setInterval(() => flushTaps(), FLUSH_INTERVAL_MS);
-  }
-
-  // ── Tiap klik ──
-  document.addEventListener('click', () => {
-    const next = currentClacks + 1;
-    animateClacks(next);
-
-    // Hanya tulis optimistic setelah server berhasil load
-    if (hasLoaded) writeOptimistic(next);
-
-    if (!counterEnabled) return;
-
-    pendingTaps += 1;
-    ensureFlushTimer();
-
-    if (pendingTaps >= MAX_BATCH_SIZE) flushTaps();
-  });
-
-  // Flush sebelum user ninggalin halaman
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') flushTaps(true);
-  });
-  window.addEventListener('pagehide', () => flushTaps(true));
-
-  // Load nilai awal
-  loadCount();
 </script>
