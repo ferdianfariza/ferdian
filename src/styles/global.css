@@ -1,1 +1,143 @@
 @import "tailwindcss";
+
+@font-face {
+   font-family: "SF-Pro";
+   src: url("../assets/fonts/SF-Pro-Text-Regular.otf") format("opentype");
+   font-weight: 400;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "SF-Pro";
+   src: url("../assets/fonts/SF-Pro-Text-Light.otf") format("opentype");
+   font-weight: 200;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "SF-Pro";
+   src: url("../assets/fonts/SF-Pro-Text-Bold.otf") format("opentype");
+   font-weight: 700;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "SF-Pro";
+   src: url("../assets/fonts/SFUIDisplayCondensed-Semibold.otf") format("opentype");
+   font-weight: 700;
+   font-stretch: condensed;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "SF-Mono";
+   src: url("../assets/fonts/SF-Mono-Light.otf") format("opentype");
+   font-weight: 300;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "SF-Mono";
+   src: url("../assets/fonts/SF-Mono-Regular.otf") format("opentype");
+   font-weight: 400;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: "SF-Mono";
+   src: url("../assets/fonts/SF-Mono-Bold.otf") format("opentype");
+   font-weight: 700;
+   font-style: normal;
+   font-display: swap;
+}
+
+@theme inline {
+   --font-sans: "SF-Pro", sans-serif;
+   --font-mono: "SF-Mono", monospace;
+}
+
+:root {
+   --bg: #fafafa;
+   --surface: #ffffff;
+   --surface-elevated: #f5f5f5;
+   --text: #171717;
+   --text-muted: #525252;
+   --text-soft: #737373;
+   --border: #d4d4d4;
+   --accent: #f95760;
+}
+
+html.dark {
+   --bg: #141414;
+   --surface: #1b1b1b;
+   --surface-elevated: #222222;
+   --text: #f5f5f5;
+   --text-muted: #d4d4d4;
+   --text-soft: #a3a3a3;
+   --border: #2f2f2f;
+   --accent: #ff6b72;
+}
+
+body {
+   background: var(--bg);
+   color: var(--text);
+   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+a {
+   transition: color 0.2s ease;
+   text-decoration: underline;
+   color: var(--accent);
+   text-decoration-style: wavy;
+   text-decoration-thickness: 0.5px;
+}
+
+a:hover {
+   color: var(--accent);
+}
+
+details.accordion {
+   overflow: hidden;
+}
+
+.accordion summary:hover {
+   color: var(--accent);
+}
+
+.theme-border {
+   border-color: var(--border);
+}
+
+.theme-surface {
+   background-color: var(--surface);
+}
+
+.theme-surface-elevated {
+   background-color: var(--surface-elevated);
+}
+
+.theme-text {
+   color: var(--text);
+}
+
+.theme-text-muted {
+   color: var(--text-muted);
+}
+
+.theme-text-soft {
+   color: var(--text-soft);
+}
+
+html:not(.dark) [data-theme-icon="sun"] {
+   display: none;
+}
+
+html.dark [data-theme-icon="moon"] {
+   display: none;
+}

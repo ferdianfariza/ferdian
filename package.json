@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/vercel": "^11.0.5",
     "@sanity/astro": "^3.5.0",
     "@sanity/client": "^7.26.2",
     "@sanity/image-url": "^2.1.1",
@@ -22,6 +24,7 @@
     "astro": "^7.1.6",
     "astro-portabletext": "^0.13.0",
     "canvas-confetti": "^1.9.4",
+    "phosphor-icons-astro": "^2.1.1-17042025",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-is": "^19.2.8",

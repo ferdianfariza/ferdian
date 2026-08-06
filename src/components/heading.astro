@@ -2,9 +2,11 @@
 import { sanityClient } from "sanity:client";
 import { PortableText } from "astro-portabletext";
 import { createImageUrlBuilder, type SanityImageSource } from "@sanity/image-url";
+import { PhMoon, PhSun } from 'phosphor-icons-astro'
 
 const query = `
    *[_type == "heading"]{
+      _updatedAt,
       nama,
       description,
       image
@@ -28,32 +30,74 @@ const urlFor = (source: SanityImageSource) =>
 
 const imageUrl = heading.image
    ? urlFor(heading.image)
-         ?.width(400)
-         .height(400)
-         .url()
+         ?.url()
    : null;
 
----
-
-<section>
-   {
-      imageUrl && (
-         <img
-         src={imageUrl}
-         alt={heading.nama}
-         width="400"
-         height="400"
-         class="rounded-xl object-cover"
-         />
-      )
-   }
-
-   <h1>
-      {heading.nama}
-   </h1>
-
-   <div>
-      <PortableText value={heading.description} />
+---<section class="relative flex flex-col items-center text-center gap-3 mb-10 md:items-start md:text-left">
+   <div class="w-full flex justify-center md:justify-start">
+      {
+         imageUrl && (
+            <img
+               src={imageUrl}
+               alt={heading.nama}
+               width="90"
+               height="180"
+               class="rounded-xl object-cover"
+            />
+         )
+      }
    </div>
 
+   <button
+      type="button"
+      data-theme-toggle
+      aria-label="Toggle dark mode"
+      class="absolute right-0 top-0 theme-surface theme-border rounded-lg border p-2 transition-colors duration-200 ease-in-out"
+   >
+      <PhMoon size={15} data-theme-icon="moon" />
+      <PhSun size={15} data-theme-icon="sun" />
+   </button>
+
+   <div class="flex flex-col md:flex-row items-center gap-2 md:items-end">
+      <h1 class="font-sans font-stretch-condensed text-[1.7rem] theme-text">
+         {heading.nama}
+      </h1>
+
+      <p class="text-[0.6rem] mb-1.5 font-mono font-light theme-text-soft">
+         Updated at {new Date(heading._updatedAt).toLocaleDateString("en-GB")}
+      </p>
+   </div>
+
+   <div class="text-[0.8rem]/5.5 theme-text-soft px-5 md:px-0">
+      <PortableText value={heading.description} />
+   </div>
 </section>
+<script>
+   const storageKey = "theme";
+   const root = document.documentElement;
+   const themeToggle = document.querySelector("[data-theme-toggle]");
+
+   const getInitialTheme = () => {
+      const storedTheme = localStorage.getItem(storageKey);
+
+      if (storedTheme === "light" || storedTheme === "dark") {
+         return storedTheme;
+      }
+
+      return "dark";
+   };
+
+   const applyTheme = (theme: "light" | "dark") => {
+      root.classList.toggle("dark", theme === "dark");
+   };
+
+   const initialTheme = getInitialTheme();
+   applyTheme(initialTheme);
+
+   themeToggle?.addEventListener("click", () => {
+      const nextTheme = root.classList.contains("dark") ? "light" : "dark";
+
+      localStorage.setItem(storageKey, nextTheme);
+      applyTheme(nextTheme);
+   });
+</script>

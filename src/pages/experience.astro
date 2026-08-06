@@ -1,0 +1,132 @@
+---
+import * as experiencePost from '../content/experience.md';
+import Layout from "../layouts/main.astro"
+
+import Heading from "../components/heading.astro"
+import Social from "../components/social.astro"
+
+const { default: Content } = experiencePost;
+---
+
+<Layout>
+	<main class="container mx-auto max-w-3xl py-20 pb-50 px-5 flex flex-col">
+		<Heading/>
+		<Social/>
+		<div class="px-5 md:px-0 mb-4">
+			<a href="/" class="inline-flex items-center font-mono text-sm theme-text-soft transition-colors duration-200 ease-in-out hover:theme-text">
+				{"<"} Back
+			</a>
+		</div>
+      <div class="text-[0.8rem] px-5 md:px-0" id="experience-content" >
+         <div class="text-[0.8rem] border-t theme-border">
+            <Content/>
+         </div>
+      </div>
+	</main>
+
+</Layout>
+
+<script>
+	// Phosphor "Hash" icon SVG (light weight, 16px)
+	const HASH_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+		<path d="M224,88H175.4l8.47-46.57a8,8,0,0,0-15.74-2.86L158.6,88H106.4l8.47-46.57a8,8,0,0,0-15.74-2.86L89.6,88H32a8,8,0,0,0,0,16H86.83L74.17,168H16a8,8,0,0,0,0,16H71.4l-8.47,46.57a8,8,0,0,0,6.44,9.3A7.79,7.79,0,0,0,71,240a8,8,0,0,0,7.86-6.57L88.6,184h52.2l-8.47,46.57a8,8,0,0,0,6.44,9.3A7.79,7.79,0,0,0,140,240a8,8,0,0,0,7.86-6.57L157.4,184H224a8,8,0,0,0,0-16H160.57l12.66-64H232a8,8,0,0,0,0-16ZM143.4,168H91.2l12.66-64h52.2Z"/>
+	</svg>`;
+
+	// Phosphor "Check" icon SVG (light weight, 16px)
+	const CHECK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+		<path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/>
+	</svg>`;
+
+	function createAnchorLink(id: string): HTMLAnchorElement {
+		const link = document.createElement('a');
+		link.href = `#${id}`;
+		link.className = 'heading-anchor';
+		link.setAttribute('aria-label', 'Copy link to this section');
+		link.setAttribute('title', 'Copy link to this section');
+		link.innerHTML = HASH_SVG;
+		return link;
+	}
+
+	async function copyHeadingLink(link: HTMLAnchorElement): Promise<void> {
+		const url = window.location.href.split('#')[0] + link.hash;
+		try {
+			await navigator.clipboard.writeText(url);
+			link.innerHTML = CHECK_SVG;
+			link.classList.add('heading-anchor--copied');
+			setTimeout(() => {
+				link.innerHTML = HASH_SVG;
+				link.classList.remove('heading-anchor--copied');
+			}, 2000);
+		} catch {
+			// clipboard not available — silently ignore
+		}
+	}
+
+	function initHeadingAnchors(articleId: string): void {
+		const article = document.getElementById(articleId);
+		if (!article) return;
+
+		const headings = article.querySelectorAll<HTMLHeadingElement>('h1, h2, h3, h4, h5, h6');
+
+		headings.forEach((heading) => {
+			const link = createAnchorLink(heading.id);
+			heading.appendChild(link);
+
+			link.addEventListener('click', () => {
+				copyHeadingLink(link);
+			});
+		});
+	}
+
+	initHeadingAnchors('experience-content');
+</script>
+
+<style is:global>
+	.heading-anchor {
+		display: inline-flex;
+		align-items: center;
+		opacity: 0;
+		margin-left: 0.35rem;
+		color: var(--text-secondary, currentColor);
+		text-decoration: none;
+		transition: opacity 0.2s ease, color 0.2s ease;
+		flex-shrink: 0;
+	}
+
+	.heading-anchor svg {
+		display: block;
+	}
+
+	:is(h1, h2, h3, h4, h5, h6):hover .heading-anchor {
+		opacity: 0.5;
+	}
+
+	.heading-anchor:hover,
+	.heading-anchor--copied {
+		opacity: 1 !important;
+	}
+
+	#experience-content {
+		line-height: 1.6;
+		color: var(--text-primary);
+	}
+
+	#experience-content p {
+		margin: 1rem 0;
+		line-height: 2em;
+	}
+
+	#experience-content :is(h1, h2, h3) {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin: 1.5rem 0 0.75rem;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	#experience-content h1 { font-size: 1.875rem; }
+	#experience-content h2 { font-size: 1.5rem; }
+	#experience-content h3 { font-size: 1.25rem; }
+</style>

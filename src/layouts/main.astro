@@ -5,10 +5,21 @@ const { content } = Astro.props;
 
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
+		<script is:inline>
+			const storedTheme = localStorage.getItem("theme");
+			const initialTheme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : "dark";
+
+			document.documentElement.classList.toggle("dark", initialTheme === "dark");
+		</script>
+		<meta charset="UTF-8" />
+		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="author" content="Ferdian Nur Fariza" />
+		<meta name="description" content="Ferdian Nur Fariza is AI Engineer based in Indonesia. Co-founder at Oxidraw, Tech Lead intern at PT Lumintu Group, and Research Assistant at IDSS. Former Software Engineer and AI Engineer intern at Telkom Indonesia." />
+		<meta name="keywords" content="Ferdian Nur Fariza, Ferdian Fariza, software engineer, Indonesia, Oxidraw, Telkom Indonesia, AI engineer, full-stack developer, web development, IDSS, Dian Nuswantoro" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" href="/favicon.svg" />
+		<title>Ferdian N. Fariza — Research Assistant | AI Engineer &amp; Python</title>
 	</head>
 	<body>
 		<slot />
