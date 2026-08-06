@@ -1,0 +1,67 @@
+---
+import { sanityClient } from "sanity:client";
+import { PortableText } from "astro-portabletext";
+
+const query = `
+   *[_type == "content"]{
+      title,
+
+      category->{
+         title
+      },
+
+      layout,
+
+      textContent,
+
+      items[]{
+         year,
+         title,
+         detail[]{
+         text,
+         url
+         },
+         description
+      }
+   }
+`;
+
+const contents = await sanityClient.fetch(query);
+---
+   {
+   contents.map((content) => (
+      <div>
+         <details open>
+         <summary>
+            {content.title}
+         </summary>
+         {
+            content.layout === "text" && (
+               <PortableText value={content.textContent} />
+            )
+         }
+         {
+            content.layout === "timeline" && (
+               <div>
+               {
+                  content.items?.map((item) => (
+                     <article>
+                     <p>
+                        {item.year}
+                     </p>
+                     <h3>
+                        {item.title}
+                     </h3>
+                     <PortableText
+                        value={item.description}
+                     />
+                     </article>
+                  ))
+               }
+               </div>
+            )
+         }
+         </details>
+      </div>
+   ))
+}

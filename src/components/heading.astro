@@ -1,0 +1,59 @@
+---
+import { sanityClient } from "sanity:client";
+import { PortableText } from "astro-portabletext";
+import { createImageUrlBuilder, type SanityImageSource } from "@sanity/image-url";
+
+const query = `
+   *[_type == "heading"]{
+      nama,
+      description,
+      image
+   }
+`;
+
+const headings = await sanityClient.fetch(query);
+const heading = headings[0];
+
+const { projectId, dataset } = sanityClient.config();
+
+
+const urlFor = (source: SanityImageSource) =>
+   projectId && dataset
+      ? createImageUrlBuilder({
+         projectId,
+         dataset
+         }).image(source)
+      : null;
+
+
+const imageUrl = heading.image
+   ? urlFor(heading.image)
+         ?.width(400)
+         .height(400)
+         .url()
+   : null;
+
+---
+
+<section>
+   {
+      imageUrl && (
+         <img
+         src={imageUrl}
+         alt={heading.nama}
+         width="400"
+         height="400"
+         class="rounded-xl object-cover"
+         />
+      )
+   }
+
+   <h1>
+      {heading.nama}
+   </h1>
+
+   <div>
+      <PortableText value={heading.description} />
+   </div>
+
+</section>
