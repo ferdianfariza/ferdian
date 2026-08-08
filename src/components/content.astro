@@ -37,7 +37,7 @@ const contents = await sanityClient.fetch(query);
 
          <div class="accordion-content">
             {content.layout === "text" && (
-               <div class="text-[0.8rem] ml-6 pb-4 theme-text-muted leading-relaxed">
+               <div class="text-[0.8rem] ml-6 pb-4 theme-text-muted leading-relaxed prose max-w-none">
                   <PortableText value={content.textContent} />
                </div>
             )}
@@ -70,7 +70,7 @@ const contents = await sanityClient.fetch(query);
                               </div>
                            )}
 
-                           <div class="mt-3 text-[0.8rem] theme-text-soft leading-relaxed">
+                           <div class="mt-3 text-[0.8rem] theme-text-soft leading-relaxed prose max-w-none">
                               <PortableText value={item.description} />
                            </div>
                         </div>
