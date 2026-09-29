@@ -1,8 +1,8 @@
 ---
-import { PhGithubLogo, PhLinkedinLogo, PhMailbox, PhFootprints } from 'phosphor-icons-astro'
+import { PhGithubLogo, PhLinkedinLogo, PhMailbox, PhFootprints, PhCode } from 'phosphor-icons-astro'
 ---
 
-<section class="flex flex-wrap justify-center font-mono text-[0.8rem] gap-5 theme-text-soft mb-15 md:justify-start">
+<section class="flex flex-wrap justify-center font-mono text-[0.8rem] gap-5 theme-text-soft mb-15 mx-5 md:mx-0 md:justify-start">
    <a href="https://github.com/ferdianfariza" target="_blank" rel="noopener noreferrer" class="flex gap-1 items-center theme-text-soft ">
       <PhGithubLogo size={18} weight="duotone"/>
       <p>GitHub</p>
@@ -11,11 +11,15 @@ import { PhGithubLogo, PhLinkedinLogo, PhMailbox, PhFootprints } from 'phosphor-
       <PhLinkedinLogo size={18} weight="duotone"/>
       <p>LinkedIn</p>
    </a>
+   <a href="https://leetcode.com/u/ferdianfariza/" target="_blank" rel="noopener noreferrer" class="flex gap-1 items-center theme-text-soft ">
+      <PhCode size={18} weight="duotone"/>
+      <p>LeetCode</p>
+   </a>
    <a href="mailto:ferdianfariza@gmail.com" class="flex gap-1 items-center theme-text-soft ">
       <PhMailbox size={18} weight="duotone"/>
       <p>eMail</p>
-   <a href="/experience" class="flex gap-1 items-center theme-text-soft ">
-      <PhFootprints size={18} weight="duotone"/>
-   </a>
+      <a href="/experience" class="flex gap-1 items-center theme-text-soft ">
+         <PhFootprints size={18} weight="duotone"/>
+      </a>
    </a>
 </section>
